@@ -97,5 +97,9 @@ ENV/
 # mkdocs documentation
 /site
 
+#config files etc
+*.yml
+*.json
+
 # mypy
 .mypy_cache/

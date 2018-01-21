@@ -27,7 +27,7 @@ class Reddit(object):
     @reddit.command()
     async def image(self, ctx, *, subreddit = ''):
         if subreddit == '':
-            await ctx.send("It seems like you forgot how to use it, so here you are: \n [prefix]reddit image [subreddit name]")
+            await ctx.send("It seems like you forgot how to use it, so here you go: \n [prefix]reddit image [subreddit name]")
         else:
             await self.make_req(self.imgur_link, subreddit)
             i = random.randint(0, len(self.entries['link']))
@@ -35,15 +35,14 @@ class Reddit(object):
 
     @reddit.command()
     async def post(self, ctx, *, subreddit = ''):
-        await ctx.send("fuck you")
+        await ctx.send("not implemented yet!")
 
     async def make_req(self, link, subreddit):
         async with aiohttp.ClientSession(headers={'authorization': 'Client-ID ' + configJson.imgur_token}) as cs:
             async with cs.get('{l}{s}'.format(l=link, s=subreddit)) as r:
                 entries = await r.json()
-                for entry in entries['data']:
-                    for key in self.keys:
-                        self.entries[key].append(entry[key])
+                for entry, key in zip(entries['data'], self.keys):
+                    self.entries[key].append(entry[key])
 
 
 def setup(bot):

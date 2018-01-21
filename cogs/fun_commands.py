@@ -9,7 +9,6 @@ class fun_commands(object):
 
         Usage:
             [prefix]boop [optional: mention someone] - everyone loves boops!
-            [prefix]kill [optional: mention someone] - if you really need it
             [prefix]reaction [reaction] - to get a list of available reactions / or to add one see addReact or showReacts
             [prefix]dearGod - for events that no one but God can handle
             [prefix]curase - because everyday is a perfect day for a crusade
@@ -39,20 +38,16 @@ class fun_commands(object):
             await ctx.send('boops ' + ctx.author.mention)
 
     @commands.command()
-    async def kill(self, ctx, *, args: str = ''):
-        if len(args) > 0:
-            await ctx.send('kills ' + args)
-        else:
-            await ctx.send(ctx.author.mention + ' commits suicide')
-
-    @commands.command()
     async def reaction(self, ctx, *, args: str):
+        if args == None:
+            await ctx.send(self.reactions.keys())
+
         if args.lower() in self.reactions:
             await ctx.send(self.reactions[args.lower()])
 
     @commands.command()
     async def dearGod(self, ctx):
-        # in the name of god - powerwolfSS
+        # in the name of god - powerwolf
         await ctx.send('https://www.youtube.com/watch?v=mobtxEJHhY4')
 
     @commands.command()
@@ -108,10 +103,6 @@ class fun_commands(object):
             await ctx.send(split[random.randint(0, 1)])
         except IndexError:
             await ctx.send("Something went wrong. Here's how to use this command: \n [prefix]decide first or second")
-
-    @commands.command()
-    async def triggered(self, ctx):
-        await ctx.send("triggered")
 
     @commands.command()
     async def echo(self, ctx, *, args=''):

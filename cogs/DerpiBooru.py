@@ -30,9 +30,8 @@ class DerpiBooru(object):
             req_mess = self.search_link + query
             async with cs.get(req_mess) as r:
                 entries = await r.json()
-                for entry in entries['search']:
-                    for key in self.keys:
-                        self.entries[key].append("http:{s}".format(s=entry[key]) if key == "image" else entry[key])
+                for entry, key in zip(entries['search'], self.keys):
+                    self.entries[key].append("http:{s}".format(s=entry[key]) if key == "image" else entry[key])
 
 
 def setup(bot):

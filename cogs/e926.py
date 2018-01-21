@@ -46,16 +46,15 @@ class e926(object):
 
     @e9.command()
     async def link(self, ctx, *, arg: str):
-        pass
+        await ctx.send("Not implemented yet!")
 
     async def make_req(self, query, amount):
         async with aiohttp.ClientSession() as cs:
             req_mess = '{l}{q}{li}{a}'.format(l=self.search_link, q=query, li='&limit=', a=str(amount))
             async with cs.get(req_mess) as r:
                 entries = await r.json()
-                for entry in entries:
-                    for key in self.keys:
-                        self.entries[key].append(entry[key])
+                for entry, key in zip(entries, self.keys):
+                    self.entries[key].append(entry[key])
 
 
 def setup(bot):

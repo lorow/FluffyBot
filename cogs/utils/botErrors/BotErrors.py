@@ -7,27 +7,27 @@ class BotErrors(object):
                 'NotLoliChannel': 'https://i.imgur.com/AvPnHE8.png',
                 'dictNull': 'dict is null'}
 
-    def add_error(self, name, message):
+    async def add_error(self, name, message):
         self.extra_errors[name] = message
 
-    def get_error(self, name):
+    async def get_error(self, name):
         try:
             return self.extra_errors[name]
         except KeyError:
             return 'error: no such error message'
 
-    def get_all_errors(self):
+    async def get_all_errors(self):
         return self.extra_errors
 
-    def empty_query(self):
+    async def empty_query(self):
         return self.get_error('empty_query')
 
-    def NotNSFWChannel(self):
+    async def NotNSFWChannel(self):
         # keep your porn of my screen
         return self.get_error('NotNSFWChannel')
 
-    def NotLoliChannel(self):
+    async def NotLoliChannel(self):
         return self.get_error('NotLoliChannel')
 
-    def NoCommand(self):
+    async def NoCommand(self):
         return self.get_error('NoCommand')

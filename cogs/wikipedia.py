@@ -1,6 +1,7 @@
 import discord
-from discord.ext import commands
 import wikipedia
+from discord.ext import commands
+
 
 class wiki(object):
     """Plugin searching through wikipedia
@@ -26,7 +27,7 @@ class wiki(object):
                 wikipedia.set_lang(self.lang)
                 await ctx.send(embed=discord.Embed(title=' '.join(args.split()[1:]), description=wikipedia.summary(self.query)))
             except Exception:
-                await ctx.send("I don't wikipedia supports such language, try something else")
+                await ctx.send("It seem that wikipedia does not support this language, try something else")
 
 
 def setup(bot):

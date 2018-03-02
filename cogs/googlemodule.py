@@ -1,6 +1,8 @@
 from discord.ext import commands
-import google as gl
-
+try:
+    import googlesearch as gl
+except ImportError:
+    import google as gl
 
 class GoogleModule(object):
     """This plugin searches through the deepest depths of google for you. It has see what it didn't want to see. So please, be gentle.

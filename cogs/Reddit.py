@@ -1,8 +1,8 @@
-import aiohttp
 import random
-from discord.ext import commands
 from collections import defaultdict
-import cogs.utils.configJSON as configJson
+
+import aiohttp
+from discord.ext import commands
 
 
 class Reddit(object):
@@ -13,8 +13,9 @@ class Reddit(object):
         [prefix]reddit post [subreddit name] - The bot will send an link to the post from given subredit. Random also works!
     """
 
-    def __init__(self, bot):
+    def __init__(self, bot, configManager):
         self.bot = bot
+        self.configManager = configManager
         self.imgur_link = "https://api.imgur.com/3/gallery/r/"
         self.entries = defaultdict(list)
         self.keys = ['link']
@@ -38,13 +39,14 @@ class Reddit(object):
         await ctx.send("not implemented yet!")
 
     async def make_req(self, link, subreddit):
-        async with aiohttp.ClientSession(headers={'authorization': 'Client-ID ' + configJson.imgur_token}) as cs:
+        async with aiohttp.ClientSession(headers={'authorization': 'Client-ID'
+                + self.configManager.get_field('imgur_client_id')}) as cs:
             async with cs.get('{l}{s}'.format(l=link, s=subreddit)) as r:
                 entries = await r.json()
                 for entry, key in zip(entries['data'], self.keys):
                     self.entries[key].append(entry[key])
 
 
-def setup(bot):
+def setup(bot, configManager):
     print("Added Reddit module")
-    bot.add_cog(Reddit(bot))
+    bot.add_cog(Reddit(bot, configManager))

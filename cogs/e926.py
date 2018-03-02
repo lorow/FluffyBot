@@ -1,6 +1,7 @@
+from collections import defaultdict
+
 import aiohttp
 import discord
-from collections import defaultdict
 from discord.ext import commands
 
 
@@ -21,7 +22,7 @@ class e926(object):
 
     @commands.group()
     async def e9(self, ctx):
-        if ctx.invokoed_subcommand is None:
+        if ctx.invoked_subcommand is None:
             await ctx.send("in case you forgot: \n" +
                            "[prefix]e9 image [optional amount] query - bot will send some furbals, just for you! \n "
                             "[prefix]e9 link [optional amount] query - bot will send an link to the original post, instead of just image!")

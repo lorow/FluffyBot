@@ -1,5 +1,6 @@
 import ujson
 
+
 class configManager(object):
 
     def __init__(self):

@@ -21,30 +21,14 @@ class FluffyTwitter(object):
 
     async def track(self):
         await self.bot.wait_until_ready()
-        req = self.client.stream.statuses.filter.post(follow = list(
-            self.configManager.get_field("birds_to_follow").values()
-        ))
+
+        req = self.client.stream.statuses.filter.post(follow = list(self.configManager.get_field("birds_to_follow")
+                                                                    .values()))
         async with req as stream:
             async for tweet in stream:
                 if peony.events.tweet(tweet):
-                    print("test2")
-                    user_name = tweet['user']['screen_name']
-                    link = tweet['entities']['media'][0]['media_url_https']
-                    await self.eventManager.notify(user_name, link)
+                    await self.eventManager.notify(tweet['user']['screen_name'], tweet)
 
 
 def setup(bot, eventManager, configManager):
     bot.add_cog(FluffyTwitter(bot, eventManager, configManager))
-
-
-
-
-
-
-
-
-
-
-
-
-

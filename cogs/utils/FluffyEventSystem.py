@@ -2,9 +2,6 @@ import inspect
 from collections import defaultdict
 
 
-class EmptyList(Exception):
-    pass
-
 class EventHook(object):
 
     def __init__(self):
@@ -26,18 +23,13 @@ class EventHook(object):
 
     async def notify(self, name_of_the_event, *args, **keywargs):
         if(len(self.events[name_of_the_event]) == 0):
-            raise EmptyList
+            pass
 
         for listener in self.events[name_of_the_event]:
             if inspect.iscoroutinefunction(listener):
                 await listener(*args, **keywargs)
             else:
                 listener(*args, **keywargs)
-
-    # decoratos for this sweet sweet sugar_syntax
-
-
-
 
 class EventDispatcher(object):
 

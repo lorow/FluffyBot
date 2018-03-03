@@ -29,7 +29,6 @@ class FluffyBot(commands.Bot):
         self.handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
         super().__init__(**self._opts)
 
-
         @self.event
         async def on_ready():
             print('Logged in as: {u}'.format(u=self.user.name))
@@ -43,7 +42,6 @@ class FluffyBot(commands.Bot):
             print(error)
             await ctx.send("I'm sorry, something went wrong, lemme fix that!")
 
-
     def _prepare_dependencies(self, cog):
         """populates 'dict' containing all of the needed dependencies by cog"""
         deps = {}
@@ -53,7 +51,6 @@ class FluffyBot(commands.Bot):
             except KeyError:
                 pass
         return deps
-
 
     def _load_cogs(self):
         """overrides 'discord.commands' load_cogs() function in order to let Fluffybot provide additional dependencies
@@ -69,13 +66,11 @@ class FluffyBot(commands.Bot):
             lib.setup(**self._prepare_dependencies(lib))
             self.extensions[extension] = lib
 
-
     def _prepare_logger(self, logger, handler):
         """prepares logger to let others log their info"""
         logger.setLevel(logging.DEBUG)
         handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
         logger.addHandler(handler)
-
 
     def _run(self):
         self._prepare_logger(self.logger, self.handler)
@@ -83,7 +78,5 @@ class FluffyBot(commands.Bot):
         self.run(self.configManager.get_field('bot_token'))
         return self
 
-
 Fbot = FluffyBot()._run()
-
 

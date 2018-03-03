@@ -1,5 +1,3 @@
-from discord.ext import commands
-
 class greetingModule(object):
 
     def __init__(self, bot):

@@ -33,6 +33,6 @@ Dependencies:
 - [ujson](https://github.com/esnme/ultrajson)
 - [peony-twitter](https://github.com/odrling/peony-twitter)
 - [GoogleSearch](https://github.com/anthonyhseb/googlesearch)
-- [Wikipedia] (https://github.com/goldsmith/Wikipedia)
+- [Wikipedia](https://github.com/goldsmith/Wikipedia)
 
 In the near future all you will have to do will be simply to run python3 ./setup.py

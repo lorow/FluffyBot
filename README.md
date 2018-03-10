@@ -6,24 +6,21 @@ Please note, it's still in development and some things may be not working or ful
 **Features**
 
 Fluffy is able to receive commands signed with '//' prefix. At this stage it can:
-* generally search Google for what you need,
-* play music from YT,
-* show an image from the net,
-* show reddit posts etc.,
-* help you with your existential problems,
-* help you got blessed by the God and much more...
 
-**Planned to be added...**
+* generally search Google and send back the results
+* play music from YT
+* send images from supported websites
+* send images from reddit
+* send articles from wikipedia
 
-Fluffy needs to have its functionalities extended. 
+and much more!
 
-There are at least 3 things:
-* better scoping of the commands so it will look like: <prefix> <command> <subcomms> <args> ,
-* make all of functions working,
-* administrator module,
-* better admin UI,
-* connect to postgresql database,  
-* option of changing prefix.
+**Planned to add**
+
+* administrator module
+* better admin UI
+
+and even more!
 
 **Self deployment**
 
@@ -32,5 +29,10 @@ To self host it, you will need to have python 3.5+ installed.
 Dependencies:
 - [Python 3.5+](https://www.python.org/downloads/) 
 - [Discord.py](http://discordpy.readthedocs.io/en/rewrite/api.html) 
-- [Requests 2.18.1+](https://pypi.python.org/pypi/requests/2.18.1)
+- [aiohttp](https://github.com/aio-libs/aiohttp)
 - [ujson](https://github.com/esnme/ultrajson)
+- [peony-twitter](https://github.com/odrling/peony-twitter)
+- [GoogleSearch](https://github.com/anthonyhseb/googlesearch)
+- [Wikipedia] (https://github.com/goldsmith/Wikipedia)
+
+In the near future all you will have to do will be simply to run python3 ./setup.py

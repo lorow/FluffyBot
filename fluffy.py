@@ -29,18 +29,17 @@ class FluffyBot(commands.Bot):
         self.handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
         super().__init__(**self._opts)
 
-        @self.event
-        async def on_ready():
-            print('Logged in as: {u}'.format(u=self.user.name))
-            print('Bots ID is: {i}'.format(i=self.user.id))
-            print('Current version is {v}'.format(v=discord.version_info))
-            print('_ _ _ _ _ _ _ _ _ _')
+
+    async def on_ready(self):
+        print('Logged in as: {u}'.format(u=self.user.name))
+        print('Bots ID is: {i}'.format(i=self.user.id))
+        print('Current version is {v}'.format(v=discord.version_info))
+        print('_ _ _ _ _ _ _ _ _ _')
 
 
-        @self.event
-        async def on_error(ctx, error):
-            print(error)
-            await ctx.send("I'm sorry, something went wrong, lemme fix that!")
+    async def on_error(self, ctx, error):
+        print(error)
+        await ctx.send("I'm sorry, something went wrong, lemme fix that!")
 
     def _prepare_dependencies(self, cog):
         """populates 'dict' containing all of the needed dependencies by cog"""

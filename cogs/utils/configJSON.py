@@ -4,12 +4,11 @@ import ujson
 class configManager(object):
 
     def __init__(self):
-        self.configuration = {}
         self._load_config()
 
     def _load_config(self):
         with open('./config.json', 'r') as config:
-            self.configuration = ujson.load(config)
+            self.__dict__ = ujson.load(config)
 
     def _reload_config(self):
         self._load_config()
@@ -21,7 +20,7 @@ class configManager(object):
             quit(1)
 
         try:
-            return self.configuration[field]
+            return self.__dict__[field]
         except KeyError as error:
             print("this field doesn't exist, check your query")
             print(error)

@@ -20,6 +20,7 @@ class TagModule(object):
         else:
             await ctx.send("dunno")
 
+
 def setup(bot):
     print("added tagSystem")
     bot.add_cog(TagModule(bot))

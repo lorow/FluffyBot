@@ -4,8 +4,10 @@ try:
 except ImportError:
     import google as gl
 
+
 class GoogleModule(object):
-    """This plugin searches through the deepest depths of google for you. It has see what it didn't want to see. So please, be gentle.
+    """This plugin searches through the deepest depths of google for you.
+       It has seen what it didn't want to see. So please, be gentle.
       \n usage: \n
        [prefix]google the things you want to search for \n
        NOTE: checking if results or query is NSFW is extremely hard or/and impossible. Search wisely!"""

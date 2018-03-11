@@ -21,8 +21,8 @@ class FluffyBot(commands.Bot):
 
         self.additional_dep = {
             'bot': self,
-            'configManager':self.configManager,
-            'eventManager': FluffyEventSystem.EventDispatcher().event_handler
+            'config_manager':self.configManager,
+            'event_manager': FluffyEventSystem.EventDispatcher().event_handler
         }
 
         self.logger = logging.getLogger('discord')
@@ -37,9 +37,8 @@ class FluffyBot(commands.Bot):
         print('_ _ _ _ _ _ _ _ _ _')
 
 
-    async def on_error(self, ctx, error):
-        print(error)
-        await ctx.send("I'm sorry, something went wrong, lemme fix that!")
+    async def on_error(self, event_method, *args, **kwargs):
+        pass
 
     def _prepare_dependencies(self, cog):
         """populates 'dict' containing all of the needed dependencies by cog"""

@@ -9,9 +9,9 @@ class UsefulCommand(object):
 
     """
 
-    def __init__(self, bot, configManager):
+    def __init__(self, bot, config_manager):
         self.bot = bot
-        self.configManager = configManager
+        self.configManager = config_manager
         self.invite_link = "none for now"
 
     @commands.command()
@@ -22,6 +22,7 @@ class UsefulCommand(object):
     async def blame(self, ctx, user):
         await ctx.send(user + " https://www.youtube.com/watch?v=R3ZEzG0r7Yc")
 
-def setup(bot, configManager):
+
+def setup(bot, config_manager):
     print("useful commands added")
-    bot.add_cog(UsefulCommand(bot, configManager))
+    bot.add_cog(UsefulCommand(bot, config_manager))

@@ -3,7 +3,7 @@ import wikipedia
 from discord.ext import commands
 
 
-class wiki(object):
+class Wiki(object):
     """Plugin searching through wikipedia
 
     Usage:
@@ -20,16 +20,19 @@ class wiki(object):
 
     @commands.command()
     async def wiki(self, ctx, *, args: str=''):
-        if str == '': await ctx.send("here's how to use this commdand: \n [pefix]wiki lang query - returns one definition at a time")
+        if str == '':
+            await ctx.send("here's how to use this commdand: \n "
+                           "[pefix]wiki lang query - returns one definition at a time")
         else:  
             await self.setup_query(args)
             try:
                 wikipedia.set_lang(self.lang)
-                await ctx.send(embed=discord.Embed(title=' '.join(args.split()[1:]), description=wikipedia.summary(self.query)))
+                await ctx.send(embed=discord.Embed(title=' '.join(args.split()[1:]),
+                                                   description=wikipedia.summary(self.query)))
             except Exception:
                 await ctx.send("It seem that wikipedia does not support this language, try something else")
 
 
 def setup(bot):
     print("added wiki module")
-    bot.add_cog(wiki(bot))
+    bot.add_cog(Wiki(bot))

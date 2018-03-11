@@ -1,21 +1,22 @@
-from discord.ext import commands
 import discord
+from discord.ext import commands
 
 
-class HourlyFox():
+class HourlyFox(object):
 
-    def __init__(self, bot, configManager, eventManager):
+    def __init__(self, bot, config_manager, event_manager):
         self.bot = bot
-        self.configManager = configManager
-        self.eventManager = eventManager
+        self.configManager = config_manager
+        self.eventManager = event_manager
         self.eventManager.append_listener('hourlyFox', self.send_link)
         self.channels = []
 
     @commands.command()
     async def sendFluffs(self, ctx):
-        self.channels.append(ctx.channel) if not ctx.channel in self.channels else await \
-            ctx.send("This channel is already waiting for fluffs")
-        await ctx.send("I'll be sending fluffs here from now on!")
+        if ctx.channel in self.channels:
+            await ctx.send("This channel is already waiting for fluffs")
+        else:
+            await ctx.send("I'll be sending fluffs here from now on!")
 
     @commands.command()
     async def stopSending(self, ctx):
@@ -29,11 +30,11 @@ class HourlyFox():
         image = tweet['entities']['media'][0]['media_url_https']
         link = tweet['entities']['media'][0]['url']
         print(tweet)
-        embedTweet = discord.Embed(description="Here's a fox for ya!").set_image(url = image).set_footer(text=link)
+        embedTweet = discord.Embed(description="Here's a fox for ya!").set_image(url=image).set_footer(text=link)
 
         for channel in self.channels:
-            await channel.send(embed = embedTweet)
+            await channel.send(embed=embedTweet)
 
 
-def setup(bot, configManager, eventManager):
-    bot.add_cog(HourlyFox(bot, configManager, eventManager))
+def setup(bot, config_manager, event_manager):
+    bot.add_cog(HourlyFox(bot, config_manager, event_manager))

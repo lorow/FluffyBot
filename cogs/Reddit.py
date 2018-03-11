@@ -10,12 +10,13 @@ class Reddit(object):
 
     Usage:
         [prefix]reddit image [subreddit name] - The bot will send an image from given subredit. Random also works!
-        [prefix]reddit post [subreddit name] - The bot will send an link to the post from given subredit. Random also works!
+        [prefix]reddit post [subreddit name] - The bot will send an link to the post from given subredit.
+        Random also works!
     """
 
-    def __init__(self, bot, configManager):
+    def __init__(self, bot, config_manager):
         self.bot = bot
-        self.configManager = configManager
+        self.configManager = config_manager
         self.imgur_link = "https://api.imgur.com/3/gallery/r/"
         self.entries = defaultdict(list)
         self.keys = ['link']
@@ -26,27 +27,29 @@ class Reddit(object):
             await ctx.send(self.__doc__)
 
     @reddit.command()
-    async def image(self, ctx, *, subreddit = ''):
+    async def image(self, ctx, *, subreddit=''):
         if subreddit == '':
-            await ctx.send("It seems like you forgot how to use it, so here you go: \n [prefix]reddit image [subreddit name]")
+            await ctx.send("It seems like you forgot how to use it, so here you go: \n"
+                           " [prefix]reddit image [subreddit name]")
         else:
             await self.make_req(self.imgur_link, subreddit)
             i = random.randint(0, len(self.entries['link']))
             await ctx.send(self.entries['link'][i])
 
     @reddit.command()
-    async def post(self, ctx, *, subreddit = ''):
+    async def post(self, ctx, *, subreddit=''):
         await ctx.send("not implemented yet!")
 
     async def make_req(self, link, subreddit):
         async with aiohttp.ClientSession(headers={'authorization': 'Client-ID'
                 + self.configManager.get_field('imgur_client_id')}) as cs:
+
             async with cs.get('{l}{s}'.format(l=link, s=subreddit)) as r:
                 entries = await r.json()
                 for entry, key in zip(entries['data'], self.keys):
                     self.entries[key].append(entry[key])
 
 
-def setup(bot, configManager):
+def setup(bot, config_manager):
     print("Added Reddit module")
-    bot.add_cog(Reddit(bot, configManager))
+    bot.add_cog(Reddit(bot, config_manager))

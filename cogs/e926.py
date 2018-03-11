@@ -5,13 +5,14 @@ import discord
 from discord.ext import commands
 
 
-class e926(object):
+class E926(object):
     """ Plugin searching through e926 image booru
 
         Usage:
 
             [prefix]e9 image [optional amount] query - bot will send some furbals, just for you!
-            [prefix]e9 link [optional amount] query - bot will send an link to the original post, instead of just image!"""
+            [prefix]e9 link [optional amount] query - bot will send an link to the original post, instead of just image!
+    """
 
     def __init__(self, bot):
         self.bot = bot
@@ -25,25 +26,22 @@ class e926(object):
         if ctx.invoked_subcommand is None:
             await ctx.send("in case you forgot: \n" +
                            "[prefix]e9 image [optional amount] query - bot will send some furbals, just for you! \n "
-                            "[prefix]e9 link [optional amount] query - bot will send an link to the original post, instead of just image!")
+                           "[prefix]e9 link [optional amount] query - bot will send an link to the original post, instead of just image!")
 
     @e9.command()
     async def image(self, ctx, *, arg: str):
-        if arg.lower() != 'original':
-            split_message = arg.split()
+        split_message = arg.split()
 
-            amount = int(split_message[-1]) if split_message[-1].isdigit() and int(split_message[-1]) > 0 else 1
-            query = '+'.join(split_message) if not split_message[-1].isdigit() else '+'.join(split_message[:-1])
+        amount = int(split_message[-1]) if split_message[-1].isdigit() and int(split_message[-1]) > 0 else 1
+        query = '+'.join(split_message) if not split_message[-1].isdigit() else '+'.join(split_message[:-1])
 
-            self.entries.clear()
-            await self.make_req(query, amount)
+        self.entries.clear()
+        await self.make_req(query, amount)
 
-            for entry in self.entries[self.keys[0]]:
-                author = self.entries[self.keys[1]][0]
-                score = self.entries[self.keys[2]][0]
-                await ctx.send(embed=discord.Embed(description='Author: {a}, Score: {s}'.format(a=author, s=score)).set_image(url=entry))
-        else:
-            await ctx.send("Original -> {l}".format(l='{ol}{id}'.format(ol=self.original_link, id = self.entries[self.keys[3]][0])))
+        for entry in self.entries["entries"][0]:
+            await ctx.send(embed=discord.Embed(description='Author: {a}, Score: {s}'
+                                               .format(a=entry[self.keys[1]], s=entry[self.keys[2]]))
+                           .set_image(url=entry[self.keys[0]]))
 
     @e9.command()
     async def link(self, ctx, *, arg: str):
@@ -53,11 +51,9 @@ class e926(object):
         async with aiohttp.ClientSession() as cs:
             req_mess = '{l}{q}{li}{a}'.format(l=self.search_link, q=query, li='&limit=', a=str(amount))
             async with cs.get(req_mess) as r:
-                entries = await r.json()
-                for entry, key in zip(entries, self.keys):
-                    self.entries[key].append(entry[key])
+                self.entries["entries"].append(await r.json())
 
 
 def setup(bot):
     print('added E9 module')
-    bot.add_cog(e926(bot))
+    bot.add_cog(E926(bot))

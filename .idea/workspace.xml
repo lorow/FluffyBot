@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c61335c9-2968-402b-9500-420f7f221a92" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/FluffyBot.iml" afterPath="$PROJECT_DIR$/.idea/FluffyBot.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/cogs/hourlyfox.py" afterPath="$PROJECT_DIR$/cogs/hourlyfox.py" />
-      <change beforePath="$PROJECT_DIR$/cogs/test.py" afterPath="$PROJECT_DIR$/cogs/test.py" />
-      <change beforePath="$PROJECT_DIR$/fluffy.py" afterPath="$PROJECT_DIR$/fluffy.py" />
+      <change beforePath="$PROJECT_DIR$/cogs/utils/FluffyEventSystem.py" afterPath="$PROJECT_DIR$/cogs/utils/FluffyEventSystem.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,18 +35,18 @@
       <file leaf-file-name="useful_commands.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cogs/useful_commands.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="552">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hourlyfox.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hourlyfox.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cogs/hourlyfox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="19" column="44" lean-forward="false" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+            <state relative-caret-position="264">
+              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -57,20 +54,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="googlemodule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cogs/googlemodule.py">
+      <file leaf-file-name="FluffyEventSystem.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cogs/utils/FluffyEventSystem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="576">
+              <caret line="24" column="51" lean-forward="false" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fun_commands.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fun_commands.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cogs/fun_commands.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2448">
+            <state relative-caret-position="378">
               <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -94,10 +93,10 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cogs/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+            <state relative-caret-position="312">
+              <caret line="13" column="12" lean-forward="false" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
               <folding>
-                <element signature="e#0#14#0" expanded="true" />
+                <marker date="1520865292946" expanded="true" signature="0:32" ph="import ..." />
               </folding>
             </state>
           </provider>
@@ -193,11 +192,9 @@
         <option value="$PROJECT_DIR$/cogs/DerpiBooru.py" />
         <option value="$PROJECT_DIR$/cogs/HelpModule.py" />
         <option value="$PROJECT_DIR$/cogs/utils/fluffyEventSystemNew.py" />
-        <option value="$PROJECT_DIR$/cogs/utils/FluffyEventSystem.py" />
         <option value="$PROJECT_DIR$/peonyTests.py" />
         <option value="$PROJECT_DIR$/cogs/utils/configJSON.py" />
         <option value="$PROJECT_DIR$/cogs/utils/TwitterManager.py" />
-        <option value="$PROJECT_DIR$/cogs/useful_commands.py" />
         <option value="$PROJECT_DIR$/cogs/wikipedia.py" />
         <option value="$PROJECT_DIR$/cogs/Reddit.py" />
         <option value="$PROJECT_DIR$/cogs/tags.py" />
@@ -208,7 +205,9 @@
         <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/fluffy.py" />
         <option value="$PROJECT_DIR$/cogs/test.py" />
+        <option value="$PROJECT_DIR$/cogs/useful_commands.py" />
         <option value="$PROJECT_DIR$/cogs/hourlyfox.py" />
+        <option value="$PROJECT_DIR$/cogs/utils/FluffyEventSystem.py" />
       </list>
     </option>
   </component>
@@ -251,6 +250,12 @@
               <item name="FluffyBot" type="b2602c69:ProjectViewProjectNode" />
               <item name="FluffyBot" type="462c0819:PsiDirectoryNode" />
               <item name="cogs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FluffyBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FluffyBot" type="462c0819:PsiDirectoryNode" />
+              <item name="cogs" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -554,7 +559,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520788043674</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fix bug in hourlyFox">
+      <created>1520865322773</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1520865322773</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -563,11 +575,11 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35657686" sideWeight="0.41434845" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22028527" sideWeight="0.5856515" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5856515" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.49841017" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14348462" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21303074" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.015898252" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -599,7 +611,8 @@
     <MESSAGE value="Simply put - huge rewrite. &#10;&#10;I've changed the way how fluffy works so now it supports some neat stuff.&#10;&#10;Fox example: users are now able to request the deps they need when the class&#10;is created, they can also register and listen to events with parameters&#10;and much more. &#10;&#10;There's even more to come and this commit is by no means a working version.&#10;It's more like a sketch of what's to come" />
     <MESSAGE value="Simplify configManager." />
     <MESSAGE value="Maintaining PEP8 compatibility. Fixed some typos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Maintaining PEP8 compatibility. Fixed some typos" />
+    <MESSAGE value="Fix bug in hourlyFox" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bug in hourlyFox" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -660,13 +673,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="2" column="8" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cogs/utils/FluffyEventSystem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -793,16 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cogs/fun_commands.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2448">
-          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -839,10 +835,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cogs/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+        <state relative-caret-position="312">
+          <caret line="13" column="12" lean-forward="false" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
           <folding>
-            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1520865292946" expanded="true" signature="0:32" ph="import ..." />
           </folding>
         </state>
       </provider>
@@ -857,18 +853,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cogs/useful_commands.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="552">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cogs/hourlyfox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="19" column="44" lean-forward="false" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+        <state relative-caret-position="264">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cogs/utils/FluffyEventSystem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="24" column="51" lean-forward="false" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cogs/fun_commands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>

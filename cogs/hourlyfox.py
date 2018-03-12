@@ -9,7 +9,6 @@ class HourlyFox(object):
         self.configManager = config_manager
         self.eventManager = event_manager
         self.eventManager.append_listener('hourlyFox', self.send_link)
-        self.eventManager.append_listener('lorow23', self.send_link)
         self.channels = []
 
     @commands.command()

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c61335c9-2968-402b-9500-420f7f221a92" name="Default" comment="Fixed E926 plugin">
+    <list default="true" id="c61335c9-2968-402b-9500-420f7f221a92" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cogs/HelpModule.py" afterPath="$PROJECT_DIR$/cogs/HelpModule.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fluffy.py" afterPath="$PROJECT_DIR$/fluffy.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +17,7 @@
     <SUITE FILE_PATH="coverage/FluffyBot$HourlyFoxTest.coverage" NAME="HourlyFoxTest Coverage Results" MODIFIED="1519560524718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/cogs" />
     <SUITE FILE_PATH="coverage/FluffyBot$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1519802981050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FluffyBot$peonyTests.coverage" NAME="peonyTests Coverage Results" MODIFIED="1520713192362" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FluffyBot$Fluffy.coverage" NAME="Fluffy Coverage Results" MODIFIED="1520798317910" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FluffyBot$Fluffy.coverage" NAME="Fluffy Coverage Results" MODIFIED="1520887157726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FluffyBot$Unnamed__1_.coverage" NAME="Unnamed (1) Coverage Results" MODIFIED="1519802970765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
@@ -86,10 +86,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
+            <state relative-caret-position="333">
               <caret line="30" column="6" lean-forward="false" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
               <folding />
             </state>
@@ -109,10 +109,10 @@
       <file leaf-file-name="HelpModule.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cogs/HelpModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+            <state relative-caret-position="54">
+              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -128,11 +128,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fluffy.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fluffy.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fluffy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="306">
+              <caret line="56" column="76" lean-forward="false" selection-start-line="56" selection-start-column="76" selection-end-line="56" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -191,7 +191,6 @@
         <option value="$PROJECT_DIR$/peonyTests.py" />
         <option value="$PROJECT_DIR$/cogs/utils/configJSON.py" />
         <option value="$PROJECT_DIR$/cogs/utils/TwitterManager.py" />
-        <option value="$PROJECT_DIR$/fluffy.py" />
         <option value="$PROJECT_DIR$/cogs/useful_commands.py" />
         <option value="$PROJECT_DIR$/cogs/test.py" />
         <option value="$PROJECT_DIR$/cogs/wikipedia.py" />
@@ -202,8 +201,9 @@
         <option value="$PROJECT_DIR$/cogs/GreetingModule.py" />
         <option value="$PROJECT_DIR$/cogs/hourlyfox.py" />
         <option value="$PROJECT_DIR$/cogs/e926.py" />
-        <option value="$PROJECT_DIR$/cogs/HelpModule.py" />
         <option value="$PROJECT_DIR$/config.json" />
+        <option value="$PROJECT_DIR$/cogs/HelpModule.py" />
+        <option value="$PROJECT_DIR$/fluffy.py" />
       </list>
     </option>
   </component>
@@ -588,7 +588,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520798454539</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Redesign help module and configuration file">
+      <created>1520887059902</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1520887059902</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -597,11 +604,11 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.105325915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3336945" sideWeight="0.4109698" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3336945" sideWeight="0.41295707" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.015898252" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.49841017" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.49682036" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3336945" sideWeight="0.5890302" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3336945" sideWeight="0.5870429" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -634,7 +641,8 @@
     <MESSAGE value="Simplify configManager." />
     <MESSAGE value="Maintaining PEP8 compatibility. Fixed some typos" />
     <MESSAGE value="Fixed E926 plugin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed E926 plugin" />
+    <MESSAGE value="Redesign help module and configuration file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redesign help module and configuration file" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -884,28 +892,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fluffy.py">
+    <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="333">
+          <caret line="30" column="6" lean-forward="false" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cogs/HelpModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        <state relative-caret-position="54">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.json">
+    <entry file="file://$PROJECT_DIR$/fluffy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="30" column="6" lean-forward="false" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+        <state relative-caret-position="306">
+          <caret line="56" column="76" lean-forward="false" selection-start-line="56" selection-start-column="76" selection-end-line="56" selection-end-column="76" />
           <folding />
         </state>
       </provider>

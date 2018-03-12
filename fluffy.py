@@ -54,7 +54,7 @@ class FluffyBot(commands.Bot):
         """overrides 'discord.commands' load_cogs() function in order to let Fluffybot provide additional dependencies
            when the bot starts to load plugins
         """
-        for extension in self.configManager.get_field('extensions'):
+        for extension in self.configManager.get_field('extensions').values():
             lib = importlib.import_module(extension)
             if not hasattr(lib, 'setup'):
                 del lib

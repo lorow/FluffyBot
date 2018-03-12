@@ -1,5 +1,5 @@
-from discord.ext import commands
 import discord
+from discord.ext import commands
 
 
 class HelpModule(object):
@@ -7,7 +7,7 @@ class HelpModule(object):
     def __init__(self, bot, cogs):
         self.bot = bot
         self.cogs = cogs
- 
+
     @commands.command()
     async def help(self, ctx, *, args=''):
 
@@ -22,8 +22,6 @@ class HelpModule(object):
                 title=args,
                 description=self.cogs[args].__doc__)
             await ctx.send(embed=message)
-
-        await ctx.send("empire did nothing wrong!")
 
 
 def setup(bot):

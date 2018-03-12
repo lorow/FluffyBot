@@ -16,6 +16,7 @@ class HourlyFox(object):
         if ctx.channel in self.channels:
             await ctx.send("This channel is already waiting for fluffs")
         else:
+            self.channels.append(ctx.channel)
             await ctx.send("I'll be sending fluffs here from now on!")
 
     @commands.command()

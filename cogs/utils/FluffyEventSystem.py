@@ -22,7 +22,7 @@ class EventHook(object):
         return self
 
     async def notify(self, name_of_the_event, *args, **keywargs):
-        if(len(self.events[name_of_the_event]) == 0):
+        if len(self.events[name_of_the_event]) == 0:
             pass
 
         for listener in self.events[name_of_the_event]:
@@ -30,6 +30,7 @@ class EventHook(object):
                 await listener(*args, **keywargs)
             else:
                 listener(*args, **keywargs)
+
 
 class EventDispatcher(object):
 

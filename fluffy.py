@@ -21,7 +21,7 @@ class FluffyBot(commands.Bot):
 
         self.additional_dep = {
             'bot': self,
-            'config_manager':self.configManager,
+            'config_manager': self.configManager,
             'event_manager': FluffyEventSystem.EventDispatcher().event_handler
         }
 
@@ -29,13 +29,11 @@ class FluffyBot(commands.Bot):
         self.handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
         super().__init__(**self._opts)
 
-
     async def on_ready(self):
         print('Logged in as: {u}'.format(u=self.user.name))
         print('Bots ID is: {i}'.format(i=self.user.id))
         print('Current version is {v}'.format(v=discord.version_info))
         print('_ _ _ _ _ _ _ _ _ _')
-
 
     async def on_error(self, event_method, *args, **kwargs):
         pass
@@ -76,5 +74,5 @@ class FluffyBot(commands.Bot):
         self.run(self.configManager.get_field('bot_token'))
         return self
 
-Fbot = FluffyBot()._run()
 
+Fbot = FluffyBot()._run()

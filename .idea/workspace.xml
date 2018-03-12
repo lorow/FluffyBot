@@ -566,14 +566,7 @@
       <option name="project" value="LOCAL" />
       <updated>1520865322773</updated>
     </task>
-    <task id="LOCAL-00006" summary="minor foxes">
-      <created>1520865775082</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1520865775082</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -619,8 +612,7 @@
     <MESSAGE value="Simplify configManager." />
     <MESSAGE value="Maintaining PEP8 compatibility. Fixed some typos" />
     <MESSAGE value="Fix bug in hourlyFox" />
-    <MESSAGE value="minor foxes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor foxes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bug in hourlyFox" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

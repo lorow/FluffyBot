@@ -77,4 +77,3 @@ class FluffyBot(commands.Bot):
         return self
 
 Fbot = FluffyBot()._run()
-

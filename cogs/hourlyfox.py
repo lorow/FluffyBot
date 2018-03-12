@@ -9,6 +9,7 @@ class HourlyFox(object):
         self.configManager = config_manager
         self.eventManager = event_manager
         self.eventManager.append_listener('hourlyFox', self.send_link)
+        self.eventManager.append_listener('lorow23', self.send_link)
         self.channels = []
 
     @commands.command()
@@ -16,6 +17,7 @@ class HourlyFox(object):
         if ctx.channel in self.channels:
             await ctx.send("This channel is already waiting for fluffs")
         else:
+            self.channels.append(ctx.channel)
             await ctx.send("I'll be sending fluffs here from now on!")
 
     @commands.command()

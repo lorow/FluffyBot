@@ -8,13 +8,17 @@ class HelpModule(object):
         self.bot = bot
         self.cogs = cogs
 
+    async def prepare_entry(self, x):
+        return "`" + x + "`" + "\n" + "    some_desc"
+
     @commands.command()
     async def help(self, ctx, *, args=''):
 
         if len(args) <= 0:
             message = discord.Embed(
-                title="Here's the list of all active plugins:",
-                description='\n'.join(list(self.cogs)))
+                title="Here's the list of all active modules:",
+                description= "\n".join([await self.prepare_entry(x) for x in self.cogs.keys()])
+            )
             message.set_footer(text="To see how to use the plugins type: help nameOfThePlugin")
             await ctx.send(embed=message)
         else:

@@ -29,6 +29,8 @@ class FluffyBot(commands.Bot):
         self.handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
         super().__init__(**self._opts)
 
+        self._run()
+
     async def on_ready(self):
         print('Logged in as: {u}'.format(u=self.user.name))
         print('Bots ID is: {i}'.format(i=self.user.id))
@@ -75,4 +77,4 @@ class FluffyBot(commands.Bot):
         return self
 
 
-Fbot = FluffyBot()._run()
+Fbot = FluffyBot()

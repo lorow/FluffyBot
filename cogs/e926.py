@@ -9,7 +9,6 @@ class E926(object):
     """ Plugin searching through e926 image booru
 
         Usage:
-
             [prefix]e9 image [optional amount] query - bot will send some furbals, just for you!
             [prefix]e9 link [optional amount] query - bot will send an link to the original post, instead of just image!
     """

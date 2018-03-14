@@ -23,7 +23,7 @@ class HourlyFox(object):
     async def stopSending(self, ctx):
         try:
             self.channels.remove(ctx.channel)
-        except Exception:
+        except ValueError:
             pass
 
     async def send_link(self, tweet):
@@ -31,10 +31,10 @@ class HourlyFox(object):
         image = tweet['entities']['media'][0]['media_url_https']
         link = tweet['entities']['media'][0]['url']
         print(tweet)
-        embedTweet = discord.Embed(description="Here's a fox for ya!").set_image(url=image).set_footer(text=link)
+        embed_tweet = discord.Embed(description="Here's a fox for ya!").set_image(url=image).set_footer(text=link)
 
         for channel in self.channels:
-            await channel.send(embed=embedTweet)
+            await channel.send(embed=embed_tweet)
 
 
 def setup(bot, config_manager, event_manager):

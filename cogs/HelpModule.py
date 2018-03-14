@@ -8,6 +8,9 @@ class HelpModule(object):
         self.bot = bot
         self.cogs = cogs
 
+    async def parse_doc(self): ...
+
+
     async def prepare_entry(self, x):
         return "`" + x + "`" + "\n" + "    some_desc"
 

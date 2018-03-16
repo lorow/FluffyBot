@@ -1,13 +1,38 @@
-from discord.ext import commands
 from collections import defaultdict
+
 import aiohttp
+from discord.ext import commands
 
 
 class DerpiBooru(object):
-    """ Ponies, ponies, ponies
+    # """ Ponies, ponies, ponies
+    #
+    #     Usage:
+    #         [prefix]dp [optional amount] query - bot will send some cute pony pictures from DerpiBooru"""
+
+    """
+        Help:
+
+        Test briefa
+
+        Brief:
+        jakiś jeszcze inny tekst
+
+        cawd
 
         Usage:
-            [prefix]dp [optional amount] query - bot will send some cute pony pictures from DerpiBooru"""
+        command x:
+            This does something
+        command x:
+            This does something
+        command x:
+            This does something
+
+        End_help:
+
+        bla blqa bla
+        """
+
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.search_link = 'https://derpibooru.org/search.json?q='

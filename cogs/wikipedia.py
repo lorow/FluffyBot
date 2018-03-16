@@ -4,10 +4,34 @@ from discord.ext import commands
 
 
 class Wiki(object):
-    """Plugin searching through wikipedia
+    # """Plugin searching through wikipedia
+    #
+    # Usage:
+    #     [pefix]wiki lang query - returns one definition at a time"""
 
-    Usage:
-        [pefix]wiki lang query - returns one definition at a time"""
+    """
+        Help:
+
+        Test briefa
+
+        Brief:
+        jakiś jeszcze inny tekst
+
+        cawd
+
+        Usage:
+        command x:
+            This does something
+        command x:
+            This does something
+        command x:
+            This does something
+
+        End_help:
+
+        bla blqa bla
+        """
+
     def __init__(self, bot):
         self.bot = bot
         self.lang = "en"

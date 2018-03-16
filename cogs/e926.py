@@ -6,11 +6,34 @@ from discord.ext import commands
 
 
 class E926(object):
-    """ Plugin searching through e926 image booru
+    # """ Plugin searching through e926 image booru
+    #
+    #     Usage:
+    #         [prefix]e9 image [optional amount] query - bot will send some furbals, just for you!
+    #         [prefix]e9 link [optional amount] query - bot will send an link to the original post, instead of just image!
+    # """
 
-        Usage:
-            [prefix]e9 image [optional amount] query - bot will send some furbals, just for you!
-            [prefix]e9 link [optional amount] query - bot will send an link to the original post, instead of just image!
+    """
+    Help:
+
+    Test briefa
+
+    Brief:
+    jakiś jeszcze inny tekst
+
+    cawd
+
+    Usage:
+    command x:
+        This does something
+    command x:
+        This does something
+    command x:
+        This does something
+
+    End_help:
+
+    bla blqa bla
     """
 
     def __init__(self, bot):

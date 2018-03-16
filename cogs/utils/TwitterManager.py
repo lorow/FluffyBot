@@ -2,6 +2,28 @@ import peony
 
 
 class FluffyTwitter(object):
+    """
+        Help:
+
+        Test briefa
+
+        Brief:
+        jakiś jeszcze inny tekst
+
+        cawd
+
+        Usage:
+        command x:
+            This does something
+        command x:
+            This does something
+        command x:
+            This does something
+
+        End_help:
+
+        bla blqa bla
+        """
 
     def __init__(self, bot, event_manager, config_manager):
         self.configManager = config_manager

@@ -3,6 +3,28 @@ from discord.ext import commands
 
 
 class HourlyFox(object):
+    """
+        Help:
+
+        Test briefa
+
+        Brief:
+        jakiś jeszcze inny tekst
+
+        cawd
+
+        Usage:
+        command x:
+            This does something
+        command x:
+            This does something
+        command x:
+            This does something
+
+        End_help:
+
+        bla blqa bla
+        """
 
     def __init__(self, bot, config_manager, event_manager):
         self.bot = bot

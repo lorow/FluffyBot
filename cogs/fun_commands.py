@@ -1,26 +1,51 @@
 import random
+
 from discord.ext import commands
+
 from cogs.utils.botErrors import BotErrors
 from cogs.utils.checks import checks
 
 
 class fun_commands(object):
-    """Some (not so) fun commands. Just try them and see what happens!
+    # """Some (not so) fun commands. Just try them and see what happens!
+    #
+    #     Usage:
+    #         [prefix]boop [optional: mention someone] - everyone loves boops!
+    #         [prefix]reaction [reaction] - to get a list of available reactions / or to add one see addReact or showReacts
+    #         [prefix]dearGod - for events that no one but God can handle
+    #         [prefix]curase - because everyday is a perfect day for a crusade
+    #         [prefix]fuckthis - when you've seen enough of this shit
+    #         [prefix]ayylmao - pretty self explanatory
+    #         [prefix]itsimportant - it really is!
+    #         [prefix]yee - self explanatory
+    #         [prefix]stop - It's time to stop!
+    #         [prefix]ping - pong
+    #         [prefix]decide [x] or [y] - can't decide on one thing or another? Let the desti... bot handle it for you!
+    #         [prefix]echo - share your thougs with bots voice
+    # """
+
+    """
+        Help:
+
+        Test briefa
+
+        Brief:
+        jakiś jeszcze inny tekst
+
+        cawd
 
         Usage:
-            [prefix]boop [optional: mention someone] - everyone loves boops!
-            [prefix]reaction [reaction] - to get a list of available reactions / or to add one see addReact or showReacts
-            [prefix]dearGod - for events that no one but God can handle
-            [prefix]curase - because everyday is a perfect day for a crusade
-            [prefix]fuckthis - when you've seen enough of this shit
-            [prefix]ayylmao - pretty self explanatory
-            [prefix]itsimportant - it really is!
-            [prefix]yee - self explanatory
-            [prefix]stop - It's time to stop!
-            [prefix]ping - pong
-            [prefix]decide [x] or [y] - can't decide on one thing or another? Let the desti... bot handle it for you!
-            [prefix]echo - share your thougs with bots voice
-    """
+        command x:
+            This does something
+        command x:
+            This does something
+        command x:
+            This does something
+
+        End_help:
+
+        bla blqa bla
+        """
 
     def __init__(self, bot: commands.Bot):
         self.bot = bot

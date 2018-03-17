@@ -6,24 +6,16 @@ class HourlyFox(object):
     """
         Help:
 
-        Test briefa
-
         Brief:
-        jakiś jeszcze inny tekst
-
-        cawd
+        A new floof every hour!
 
         Usage:
-        command x:
-            This does something
-        command x:
-            This does something
-        command x:
-            This does something
+        command //sendFluffs:
+            Adds the channel from which this was executed to the list of awaiting for foxxos
+        command //stopSending:
+            Removes the channel from which this was executed from mentioned above list
 
         End_help:
-
-        bla blqa bla
         """
 
     def __init__(self, bot, config_manager, event_manager):

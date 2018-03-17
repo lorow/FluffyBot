@@ -5,31 +5,21 @@ class UsefulCommand(object):
     # """Just some use(less)ful commands
     #
     #     Usage:
-    #         [prefix]invite - will send an invite link for you to let you invite this bot
+    #         [prefix] - will send an invite link for you to let you invite this bot
     #
     # """
 
     """
         Help:
 
-        Test briefa
-
         Brief:
-        jakiś jeszcze inny tekst
-
-        cawd
+        Probably useful commands
 
         Usage:
-        command x:
-            This does something
-        command x:
-            This does something
-        command x:
-            This does something
+        command //invite:
+            Bot will send you an invite link so you can invite it to your own server
 
         End_help:
-
-        bla blqa bla
         """
 
     def __init__(self, bot, config_manager):

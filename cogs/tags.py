@@ -13,24 +13,14 @@ class TagModule(object):
     """
         Help:
 
-        Test briefa
-
         Brief:
-        jakiś jeszcze inny tekst
-
-        cawd
+        Simply tags
 
         Usage:
-        command x:
-            This does something
-        command x:
-            This does something
-        command x:
-            This does something
+        command //tag [tag]:
+            Bot will send you whatever was under given tag
 
         End_help:
-
-        bla blqa bla
         """
 
     def __init__(self, bot):

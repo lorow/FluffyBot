@@ -6,33 +6,23 @@ except ImportError:
 
 
 class GoogleModule(object):
-    # """This plugin searches through the deepest depths of google for you.
+    # """
     #    It has seen what it didn't want to see. So please, be gentle.
     #   \n usage: \n
-    #    [prefix]google the things you want to search for \n
-    #    NOTE: checking if results or query is NSFW is extremely hard or/and impossible. Search wisely!"""
+    #    [prefix] the things you want to search for \n
+    #    NOTE: """
 
     """
         Help:
 
-        Test briefa
-
         Brief:
-        jakiś jeszcze inny tekst
-
-        cawd
+        This plugin searches through the deepest depths of google for you. Search wisely!
 
         Usage:
-        command x:
-            This does something
-        command x:
-            This does something
-        command x:
-            This does something
+        command //google [lang] [query]:
+            This command will return whatever it finds first
 
         End_help:
-
-        bla blqa bla
         """
 
     def __init__(self, bot: commands.bot):

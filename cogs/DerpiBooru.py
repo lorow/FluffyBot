@@ -5,32 +5,17 @@ from discord.ext import commands
 
 
 class DerpiBooru(object):
-    # """ Ponies, ponies, ponies
-    #
-    #     Usage:
-    #         [prefix]dp [optional amount] query - bot will send some cute pony pictures from DerpiBooru"""
-
     """
         Help:
 
-        Test briefa
-
         Brief:
-        jakiś jeszcze inny tekst
-
-        cawd
+        Ponies, ponies, ponies!
 
         Usage:
-        command x:
-            This does something
-        command x:
-            This does something
-        command x:
-            This does something
+        command //dp [query] [optional amount]:
+            Bot will send some cute pony pictures from DerpiBooru
 
         End_help:
-
-        bla blqa bla
         """
 
     def __init__(self, bot: commands.Bot):

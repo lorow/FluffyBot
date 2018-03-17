@@ -6,10 +6,6 @@ from discord.ext import commands
 
 
 class Reddit(object):
-    # """Just some basic Reddit commands. Use them to make your or someones day better
-    #
-    # Usage:
-    #     [prefix]reddit image [subreddit name] - The bot will send an image from given subredit. Random also works!
     #     [prefix]reddit post [subreddit name] - The bot will send an link to the post from given subredit.
     #     Random also works!
     # """
@@ -17,24 +13,14 @@ class Reddit(object):
     """
         Help:
 
-        Test briefa
-
         Brief:
-        jakiś jeszcze inny tekst
-
-        cawd
+        Just some basic Reddit commands. Use them to make your or someones day better
 
         Usage:
-        command x:
-            This does something
-        command x:
-            This does something
-        command x:
-            This does something
+        command //reddit image [subreddit name]:
+            The bot will send an image from given subredit. Random also works!
 
         End_help:
-
-        bla blqa bla
         """
 
     def __init__(self, bot, config_manager):

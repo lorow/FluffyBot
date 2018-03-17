@@ -1,26 +1,4 @@
 class GreetingModule(object):
-    """
-        Help:
-
-        Test briefa
-
-        Brief:
-        jakiś jeszcze inny tekst
-
-        cawd
-
-        Usage:
-        command x:
-            This does something
-        command x:
-            This does something
-        command x:
-            This does something
-
-        End_help:
-
-        bla blqa bla
-        """
 
     def __init__(self, bot):
         self.bot = bot

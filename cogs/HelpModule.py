@@ -14,24 +14,16 @@ class HelpModule(object):
     """
         Help:
 
-        Test briefa
-
         Brief:
-        jakiś jeszcze inny tekst
+        This module let's you view all other modules and their commands
 
         cawd
 
         Usage:
-        command baawd:
-            This does something
-        command adw:
-            This does something
-        command awd:
-            This does something
+        command //help:
+            Sends this message
 
         End_help:
-
-        bla blqa bla
         """
 
     def __init__(self, bot, cogs, config_manager):
@@ -40,10 +32,11 @@ class HelpModule(object):
         self.keywords = ("Help:", "Brief:", "Usage:", "End_help:")
         self.ignore = config_manager.get_field("ignore_plugins")
         self.doc_keys = list(config_manager.get_field("extensions").keys())
-        self.docs = {}  # {name:{ brief:"awd", usage:["command", "use case", "command" ...]}, name: ...}
+        self.docs = {}
         self.parse_doc(cogs)
 
     def parse_doc(self, cogs):
+        cogs['HelpModule'] = self
         for cog in enumerate(cogs):
             if cog[1] not in self.ignore:
                 if cogs[cog[1]].__doc__ is not None:
@@ -70,13 +63,13 @@ class HelpModule(object):
             if len(args) <= 0:
                 message = discord.Embed(
                     title="Here's the list of all active modules:",
-                    description="\n".join(["`" + x + "`"+ "\n    " +
+                    description="\n".join(["`" + x + "`" + "\n    " +
                                            ' '.join(self.docs[x]["brief"]) for x in self.docs.keys()]))
                 await ctx.send(embed=message)
             else:
                 mess = discord.Embed(
                     title="Here's a list of commands for {c}".format(c=args),
-                    description=''.join(["\n" + "`" + x[7: -1]+ "`"
+                    description=''.join(["\n" + "`" + x[7: -1] + "`"
                                          if x.startswith("command") else "\n  " + x for x in self.docs[args]["usage"]]))
                 await ctx.send(embed=mess)
         except Exception:

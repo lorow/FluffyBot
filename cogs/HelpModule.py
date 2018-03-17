@@ -22,11 +22,11 @@ class HelpModule(object):
         cawd
 
         Usage:
-        command x:
+        command baawd:
             This does something
-        command x:
+        command adw:
             This does something
-        command x:
+        command awd:
             This does something
 
         End_help:
@@ -34,18 +34,20 @@ class HelpModule(object):
         bla blqa bla
         """
 
-    def __init__(self, bot, cogs):
+    def __init__(self, bot, cogs, config_manager):
         self.bot = bot
+        self.config_manager = config_manager
         self.keywords = ("Help:", "Brief:", "Usage:", "End_help:")
-        self.ignore = ["FluffyTwitter", "TestModule"]
+        self.ignore = config_manager.get_field("ignore_plugins")
+        self.doc_keys = list(config_manager.get_field("extensions").keys())
         self.docs = {}  # {name:{ brief:"awd", usage:["command", "use case", "command" ...]}, name: ...}
         self.parse_doc(cogs)
 
     def parse_doc(self, cogs):
-        for cog in cogs:
-            if cog not in self.ignore:
-                if cogs[cog].__doc__ is not None:
-                    spliced = list(filter(None, cogs[cog].__doc__.split('\n')))
+        for cog in enumerate(cogs):
+            if cog[1] not in self.ignore:
+                if cogs[cog[1]].__doc__ is not None:
+                    spliced = list(filter(None, cogs[cog[1]].__doc__.split('\n')))
                     spliced = [' '.join(x.split()) for x in spliced]
                     try:
                         indexes = {index: spliced.index(index) for index in self.keywords}
@@ -53,7 +55,7 @@ class HelpModule(object):
                         raise IncompleteHelp("{c} - Your documentation is incomplete".format(c=cog))
 
                     if indexes["Help:"] < indexes["End_help:"] and indexes["Brief:"] < indexes["Usage:"]:
-                        self.docs[cog] = {
+                        self.docs[self.doc_keys[cog[0]]] = {
                             "brief": spliced[indexes["Brief:"] + 1:indexes["Usage:"]],
                             "usage": spliced[indexes["Usage:"] + 1:indexes["End_help:"]]
                         }
@@ -62,24 +64,26 @@ class HelpModule(object):
                 else:
                     raise MissingDoc("{c} - missing doc".format(c=cog))
 
-    @staticmethod
-    async def prepare_entry(x):
-        return "`" + x + "`"
-
     @commands.command()
     async def help(self, ctx, *, args=''):
-        pass
-        if len(args) <= 0:
-            message = discord.Embed(
-                title="Here's the list of all active modules:",
-                description="\n".join([await self.prepare_entry(x)
-                                       + "\n    " + ' '.join(self.docs[x]["brief"]) for x in self.docs.keys()])
-            )
-            message.set_footer(text="To see how to use the plugins type: help nameOfThePlugin")
-            await ctx.send(embed=message)
+        try:
+            if len(args) <= 0:
+                message = discord.Embed(
+                    title="Here's the list of all active modules:",
+                    description="\n".join(["`" + x + "`"+ "\n    " +
+                                           ' '.join(self.docs[x]["brief"]) for x in self.docs.keys()]))
+                await ctx.send(embed=message)
+            else:
+                mess = discord.Embed(
+                    title="Here's a list of commands for {c}".format(c=args),
+                    description=''.join(["\n" + "`" + x[7: -1]+ "`"
+                                         if x.startswith("command") else "\n  " + x for x in self.docs[args]["usage"]]))
+                await ctx.send(embed=mess)
+        except Exception:
+            await ctx.send("{arg} - probably doesn't exists, check your query".format(arg=args))
 
 
-def setup(bot):
+def setup(bot, config_manager):
     print("Added HelpModule")
     bot.remove_command("help")
-    bot.add_cog(HelpModule(bot, bot.cogs))
+    bot.add_cog(HelpModule(bot, bot.cogs, config_manager))

@@ -7,11 +7,6 @@ from cogs.utils.checks import checks
 
 
 class fun_commands(object):
-    # """
-    #
-    #     Usage:
-    #
-    # """
 
     """
         Help:
@@ -53,7 +48,6 @@ class fun_commands(object):
         self.bot = bot
         self.botError = BotErrors.BotErrors()
         self.reactions = {
-            'fuckthisshit': 'https://www.youtube.com/watch?v=5FjWe31S_0g',
             'crusade': 'https://www.youtube.com/watch?v=Ky2UP5j_pK8'}
         self.checks = checks()
 
@@ -87,15 +81,6 @@ class fun_commands(object):
                          'It\'s a perfect day for a crusade',
                          'What a lovely time for a crusade']
         await ctx.send(random_quotes[random.randint(0, len(random_quotes))] + '\n' + 'https://www.youtube.com/watch?v=Ky2UP5j_pK8')
-
-    @commands.command()
-    async def fuckthis(self, ctx):
-        random_quotes = ['Man...',
-                         "ARE YOU FUCKING KIDDING ME?!",
-                         " ",
-                         "well...",
-                         "..."]
-        await ctx.send(random_quotes[random.randint(0, len(random_quotes))] + '\n' + 'https://www.youtube.com/watch?v=5FjWe31S_0g')
 
     @commands.command()
     async def ayylmao(self, ctx):

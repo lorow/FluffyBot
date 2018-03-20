@@ -40,6 +40,11 @@ class FluffyBot(commands.Bot):
     async def on_error(self, event_method, *args, **kwargs):
         pass
 
+    async def on_message(self, message):
+        print("t")
+        await self.additional_dep['event_manager'].notify("on_message", message)
+        await self.process_commands(message)
+
     def _prepare_dependencies(self, cog):
         """populates 'dict' containing all of the needed dependencies by cog"""
         deps = {}
@@ -73,6 +78,7 @@ class FluffyBot(commands.Bot):
     def _run(self):
         self._prepare_logger(self.logger, self.handler)
         self._load_cogs()
+        self.additional_dep['event_manager'].append_event("on_message")
         self.run(self.configManager.get_field('bot_token'))
         return self
 

@@ -1,4 +1,5 @@
 from discord.ext import commands
+from discord.ext.commands import Command
 
 
 class TestModule(object):
@@ -7,11 +8,14 @@ class TestModule(object):
         self.bot = bot
         self.configManager = config_manager
         self.eventManager = event_manager
+        self.eventManager.append_listener("on_message", self.test)
 
     @commands.command()
-    async def test(self, ctx):
-        for i in range(2):
-            await ctx.send("`test` \n  test \n")
+    async def testT(self, ctx):
+        await ctx.send("t")
+
+    async def test(self, message):
+        await Command.invoke(self.testT)
 
     @commands.command()
     async def update(self, ctx):

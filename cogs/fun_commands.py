@@ -7,6 +7,11 @@ from cogs.utils.checks import checks
 
 
 class fun_commands(object):
+    # """
+    #
+    #     Usage:
+    #
+    # """
 
     """
         Help:
@@ -16,7 +21,7 @@ class fun_commands(object):
 
         Usage:
 
-        command /boop:
+        command //boop:
             optional: mention someone] - everyone loves boops!
         command reaction [reaction]:
             to get a list of available reactions / or to add one see addReact or showReacts
@@ -24,8 +29,6 @@ class fun_commands(object):
             for events that no one but God can handle
         command //crusade:
             because everyday is a perfect day for a crusade
-        command //fuckthis:
-            when you've seen enough of this shit
         command //ayylmao:
             pretty self explanatory
         command //itsimportant:
@@ -60,7 +63,7 @@ class fun_commands(object):
 
     @commands.command()
     async def reaction(self, ctx, *, args: str):
-        if args == None:
+        if args is None:
             await ctx.send(self.reactions.keys())
 
         if args.lower() in self.reactions:
@@ -80,7 +83,8 @@ class fun_commands(object):
                          'I feel like I need a crusade',
                          'It\'s a perfect day for a crusade',
                          'What a lovely time for a crusade']
-        await ctx.send(random_quotes[random.randint(0, len(random_quotes))] + '\n' + 'https://www.youtube.com/watch?v=Ky2UP5j_pK8')
+        await ctx.send(random_quotes[random.randint(0, len(random_quotes))] + '\n' +
+                       'https://www.youtube.com/watch?v=Ky2UP5j_pK8')
 
     @commands.command()
     async def ayylmao(self, ctx):
@@ -119,6 +123,7 @@ class fun_commands(object):
     @commands.command()
     async def echo(self, ctx, *, args=''):
         await ctx.send(args)
+
 
 def setup(bot):
     print("added UserUtils module")

@@ -8,10 +8,8 @@ class TestModule(object):
         self.configManager = config_manager
         self.eventManager = event_manager
 
-    @commands.command()
-    async def test(self, ctx):
-        for i in range(2):
-            await ctx.send("`test` \n  test \n")
+    async def test(self, message):
+        await message.channel.send(message.author.id)
 
     @commands.command()
     async def update(self, ctx):

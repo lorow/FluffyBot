@@ -12,7 +12,7 @@ class HourlyFox(object):
         to send a message.
 
         Usage:
-        command //sendFluffs [optional ignore - if you want the bot to ignore the limit] :
+        command //sendFluffs [optional: ignore_limit] - if you want the bot to ignore the limit:
             Adds the channel from which this was executed to the list of awaiting for foxxos
         command //stopSending:
             Removes the channel from which this was executed from mentioned above list
@@ -24,14 +24,24 @@ class HourlyFox(object):
         self.bot = bot
         self.configManager = config_manager
         self.eventManager = event_manager
-        self.eventManager.append_listener('hourlyFox', self.send_link)
-        self.eventManager.append_listener("on_message", self.change_last_id)
+
+        self.default_title = "Here's a fox for ya!"
+
+        self.last_id = None
+        self.last_bot_message = None
+
         self.channels = []
         self.channels_type = {}
-        self.last_id = None
+
+        self.eventManager.append_listener("on_message", self.change_last_id)
+        self.eventManager.append_listener('hourlyFox', self.send_link)
 
     async def change_last_id(self, message):
-        self.last_id = message.author.id
+        # update the last id only if the title of the embedded message is the same as the default title
+        if message.embeds[0].title == self.default_title:
+            self.last_id = message.author.id
+        else:
+            self.last_id = 0 # just nothing, so the bot can simply ignore it
 
     @commands.command()
     async def sendFluffs(self, ctx, ignore="False"):
@@ -57,14 +67,14 @@ class HourlyFox(object):
         image = tweet['entities']['media'][0]['media_url_https']
         link = tweet['entities']['media'][0]['url']
         print(tweet)
-        embed_tweet = discord.Embed(description="Here's a fox for ya!").set_image(url=image).set_footer(text=link)
+        embed_tweet = discord.Embed(title=self.default_title).set_image(url=image).set_footer(text=link)
 
         for channel in self.channels:
-            if bool(self.channels_type[channel]):
+            if self.channels_type[channel] == "ignore_limit":
+                await channel.send(embed=embed_tweet)
+            else:
                 if self.last_id != self.bot.user.id:
                     await channel.send(embed=embed_tweet)
-            else:
-                await  channel.send(embed=embed_tweet)
 
 
 def setup(bot, config_manager, event_manager):

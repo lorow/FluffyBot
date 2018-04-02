@@ -73,7 +73,7 @@ class HelpModule(object):
                                          if x.startswith("command") else "\n  " + x for x in self.docs[args]["usage"]]))
                 await ctx.send(embed=mess)
         except Exception:
-            await ctx.send("{arg} - probably doesn't exists, check your query".format(arg=args))
+            await ctx.send("{arg} - probably doesn't exist, check your query".format(arg=args))
 
 
 def setup(bot, config_manager):

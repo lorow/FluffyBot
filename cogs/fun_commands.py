@@ -23,8 +23,8 @@ class fun_commands(object):
 
         command //boop:
             optional: mention someone] - everyone loves boops!
-        command reaction [reaction]:
-            to get a list of available reactions / or to add one see addReact or showReacts
+        command //reaction [reaction]:
+            to get a list of available reactions / or to add one see addReact or showReacts (not implemented yet)
         command //dearGod:
             for events that no one but God can handle
         command //crusade:

@@ -1,7 +1,7 @@
 import ujson
 
 
-class configManager(object):
+class ConfigManager(object):
 
     def __init__(self):
         self._load_config()

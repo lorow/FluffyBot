@@ -13,7 +13,7 @@ from cogs.utils import FluffyEventSystem
 class FluffyBot(commands.Bot):
 
     def __init__(self):
-        self.configManager = configJson.configManager()
+        self.configManager = configJson.ConfigManager()
 
         self._opts = {'command_prefix': self.configManager.get_field('command_prefix'),
                       'description': self.configManager.get_field('description'),

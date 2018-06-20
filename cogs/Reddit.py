@@ -6,9 +6,6 @@ from discord.ext import commands
 
 
 class Reddit(object):
-    #     [prefix]reddit post [subreddit name] - The bot will send an link to the post from given subredit.
-    #     Random also works!
-    # """
 
     """
         Help:

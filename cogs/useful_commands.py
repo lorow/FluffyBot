@@ -2,12 +2,6 @@ from discord.ext import commands
 
 
 class UsefulCommand(object):
-    # """Just some use(less)ful commands
-    #
-    #     Usage:
-    #         [prefix] - will send an invite link for you to let you invite this bot
-    #
-    # """
 
     """
         Help:

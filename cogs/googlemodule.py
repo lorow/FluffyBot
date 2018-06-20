@@ -6,11 +6,6 @@ except ImportError:
 
 
 class GoogleModule(object):
-    # """
-    #    It has seen what it didn't want to see. So please, be gentle.
-    #   \n usage: \n
-    #    [prefix] the things you want to search for \n
-    #    NOTE: """
 
     """
         Help:

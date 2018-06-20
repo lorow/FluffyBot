@@ -7,11 +7,6 @@ from cogs.utils.checks import checks
 
 
 class fun_commands(object):
-    # """
-    #
-    #     Usage:
-    #
-    # """
 
     """
         Help:

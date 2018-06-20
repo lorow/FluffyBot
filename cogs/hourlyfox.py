@@ -27,21 +27,26 @@ class HourlyFox(object):
 
         self.default_title = "Here's a fox for ya!"
 
-        self.last_id = None
-        self.last_bot_message = None
+        self.last_id = {}
 
         self.channels = []
         self.channels_type = {}
 
         self.eventManager.append_listener("on_message", self.change_last_id)
         self.eventManager.append_listener('hourlyFox', self.send_link)
+        self.eventManager.append_listener("lorow23", self.send_link)
 
     async def change_last_id(self, message):
         # update the last id only if the title of the embedded message is the same as the default title
-        if message.embeds[0].title == self.default_title:
-            self.last_id = message.author.id
-        else:
-            self.last_id = 0 # just nothing, so the bot can simply ignore it
+        try:
+            if message.embeds[0].title == self.default_title:
+                self.last_id[message.channel.id] = message.author.id
+            else:
+                self.last_id[message.channel.id] = 0 # just nothing, so the bot can simply ignore it
+        except Exception as e:
+            print(e)
+
+        print('{c} {i}}'.format(c = message.channel.id, i = self.last_id[message.channel.id]))
 
     @commands.command()
     async def sendFluffs(self, ctx, ignore="False"):
@@ -73,7 +78,7 @@ class HourlyFox(object):
             if self.channels_type[channel] == "ignore_limit":
                 await channel.send(embed=embed_tweet)
             else:
-                if self.last_id != self.bot.user.id:
+                if self.last_id[channel] != self.bot.user.id:
                     await channel.send(embed=embed_tweet)
 
 

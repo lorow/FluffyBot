@@ -4,18 +4,12 @@ from discord.ext import commands
 
 
 class Wiki(object):
-    # """
-    #
-    # Usage:
-    #     [pefix] - """
 
     """
         Help:
 
         Brief:
         Plugin searching through wikipedia
-
-        cawd
 
         Usage:
         command //wiki [lang] [query]:

@@ -23,7 +23,6 @@ class BotErrors(object):
         return self.get_error('empty_query')
 
     async def NotNSFWChannel(self):
-        # keep your porn of my screen
         return self.get_error('NotNSFWChannel')
 
     async def NotLoliChannel(self):

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="c61335c9-2968-402b-9500-420f7f221a92" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cogs/roleManager.py" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/cogs/utils/basePlugin.py" afterPath="" />
@@ -18,6 +19,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cogs/wikipedia.py" afterPath="$PROJECT_DIR$/cogs/wikipedia.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fluffy.py" afterPath="$PROJECT_DIR$/fluffy.py" />
     </list>
+=======
+    <list default="true" id="ceedc038-8d05-45ee-9b3b-0f5a3f0e9a0b" name="Default" comment="" />
+>>>>>>> Stashed changes
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -692,7 +696,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="2576" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13831478" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />

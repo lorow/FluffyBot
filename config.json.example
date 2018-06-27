@@ -25,6 +25,20 @@
   "extensions": {
        The cogs you want to have, for example, if you want to disable one, just delete it from here
        "name_of_the_cog":"cogs.fileName"
+
+    "fun"               :   "cogs.fun_commands",
+    "derpiBooru"        :   "cogs.DerpiBooru",
+    "e926"              :   "cogs.e926",
+    "reddit"            :   "cogs.Reddit",
+    "google"            :   "cogs.googlemodule",
+    "wikipedia"         :   "cogs.wikipedia",
+    "useful"            :   "cogs.useful_commands",
+    "tags"              :   "cogs.tags",
+    "greetingModule"    :   "cogs.GreetingModule",
+    "roleManager"       :   "cogs.roleManager",
+    "testCog"           :   "cogs.test",
+    "twitter"           :   "cogs.utils.TwitterManager",
+    "help"              :   "cogs.HelpModule"
   },
 
   "dependencies":{

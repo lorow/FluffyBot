@@ -61,7 +61,7 @@ class FluffyBot(commands.Bot):
                 self.additional_dep[dependency] = dep.setup()
             except AttributeError:
                 print(self.errorCodes.WARNING +
-                      'WARNING: dependency {dep} has no setup funcion and thus can not be added automatically'
+                      'WARNING: dependency {dep} has no setup function and thus can not be added automatically'
                       .format(dep=dependency)
                       + self.errorCodes.ENDC)
 
@@ -79,15 +79,21 @@ class FluffyBot(commands.Bot):
         """overrides 'discord.commands' load_cogs() function in order to let Fluffybot provide additional dependencies
            when the bot starts to load plugins
         """
-        for extension in self.configManager.get_field('extensions'):
-            lib = importlib.import_module(extension)
+        # this will get us a tuple containing foobar("name of the cog", "the cog")
+        # for example foobar("fun", cogs.fun_commands)
+
+        foobar = zip(self.configManager.get_field('extensions').keys(),
+                     self.configManager.get_field('extensions').values())
+
+        for extension in foobar:
+            lib = importlib.import_module(extension[1])
             if not hasattr(lib, 'setup'):
                 del lib
-                del sys.modules[extension]
+                del sys.modules[extension[1]]
                 raise discord.ClientException('extension does not have a setup function')
 
             lib.setup(**self._prepare_dependencies(lib))
-            self.extensions[extension] = lib
+            self.extensions[extension[0]] = lib
 
     def _prepare_logger(self, logger, handler):
         """prepares logger to let others log their info"""

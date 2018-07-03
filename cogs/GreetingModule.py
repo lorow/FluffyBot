@@ -1,5 +1,16 @@
 class GreetingModule(object):
 
+
+    __json_doc__ =\
+    """
+     {
+        "ignore": false,
+        "brief":"Plugin for greeting!",
+
+        "commands":{}
+     } 
+    """
+
     def __init__(self, bot):
         self.bot = bot
 

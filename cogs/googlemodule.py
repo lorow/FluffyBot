@@ -7,18 +7,25 @@ except ImportError:
 
 class GoogleModule(object):
 
+
+    __json_doc__ =\
     """
-        Help:
+     {
+        "ignore": false,
+        "brief":"This command will return whatever it finds first",
 
-        Brief:
-        This plugin searches through the deepest depths of google for you. Search wisely!
+        "commands":{
+            "google":{
+                "desc": "The bot will send an image from given subredit. Random also works!",
 
-        Usage:
-        command //google [lang] [query]:
-            This command will return whatever it finds first
-
-        End_help:
-        """
+                "args":{
+                    "lang"  : "lang-based version of google you'd like to use",
+                    "query" : "things you'd like to search"
+                }
+            }
+        }
+    } 
+    """
 
     def __init__(self, bot: commands.bot):
         self.bot = bot

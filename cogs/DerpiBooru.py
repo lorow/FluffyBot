@@ -5,17 +5,25 @@ from discord.ext import commands
 
 
 class DerpiBooru(object):
-    """
-        Help:
 
-        Brief:
-        Ponies, ponies, ponies!
 
-        Usage:
-        command //dp [query] [optional amount]:
-            Bot will send some cute pony pictures from DerpiBooru
-
-        End_help:
+    __json_doc__ = \
+        """
+         {
+            "ignore": false,
+            "brief":"Ponies, ponies, ponies!",
+    
+            "commands":{
+                "dp":{
+                    "desc": "Bot will send some cute pony pictures from DerpiBooru",
+    
+                    "args":{
+                        "query"  : "Just your query",
+                        "amount" : "[optional] how many pictures you want to get, 1 by default"
+                    }
+                }
+            }
+         } 
         """
 
     def __init__(self, bot: commands.Bot):

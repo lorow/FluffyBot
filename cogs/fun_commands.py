@@ -5,38 +5,80 @@ from discord.ext import commands
 
 class fun_commands(object):
 
-    """
-        Help:
 
-        Brief:
-        Some (not so) fun commands. Just try them and see what happens!
+    __json_doc__ = \
+        """
+         {
+     	"ignore": false,
+     	"brief": "Some (not so) fun commands. Just try them and see what happens!",
 
-        Usage:
+     	"commands": {
+     		"boop": {
+     			"desc": "everyone loves boops!",
 
-        command //boop:
-            optional: mention someone] - everyone loves boops!
-        command //reaction [reaction]:
-            to get a list of available reactions / or to add one see addReact or showReacts (not implemented yet)
-        command //dearGod:
-            for events that no one but God can handle
-        command //crusade:
-            because everyday is a perfect day for a crusade
-        command //ayylmao:
-            pretty self explanatory
-        command //itsimportant:
-            it really is!
-        command //yee:
-            self explanatory
-        command //stop:
-            It's time to stop!
-        command //ping:
-            pong
-        command //decide [x] or [y]:
-            can't decide on one thing or another? Let the desti... bot handle it for you!
-        command //echo [message]:
-            share your thougs with bots voice
+     			"args": {
+     				"person": "[Optional] mention them if you want them booped!"
+     			}
+     		},
 
-        End_help:
+     		"reaction": {
+     			"desc": " to get a list of available reactions / or to add one see addReact or showReacts (not implemented yet)",
+
+     			"args": {
+     				"reaction": "one reaction from the list"
+     			}
+     		},
+
+     		"dearGod": {
+     			"desc": "for events that no one but God can handle",
+     			"args": {}
+     		},
+
+     		"crusade": {
+     			"desc": "because everyday is a perfect day for a crusade",
+     			"args": {}
+     		},
+
+     		"ayylmao": {
+     			"desc": "pretty self explanatory",
+     			"args": {}
+     		},
+
+     		"itsimportant": {
+     			"desc": "it really is!",
+     			"args": {}
+     		},
+
+     		"yee": {
+     			"desc": "self explanatory",
+     			"args": {}
+     		},
+
+     		"stop": {
+     			"desc": "It's time to stop!",
+     			"args": {}
+     		},
+
+     		"ping": {
+     			"desc": "pong",
+     			"args": {}
+     		},
+
+     		"decide": {
+     			"desc": " can't decide on one thing or another? Let the desti... bot handle it for you!",
+     			"args": {
+     				"x or y": "you can decide between only two things, separated by 'or' keyword"
+     			}
+     		},
+
+     		"echo": {
+     			"desc": "share your thoughts with bots voice",
+     			"args": {
+     				"message": "your message"
+     			}
+     		}
+     	}
+     }
         """
 
     def __init__(self, bot: commands.Bot):

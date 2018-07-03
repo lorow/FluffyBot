@@ -7,18 +7,24 @@ from discord.ext import commands
 
 class Reddit(object):
 
+
+    __json_doc__ =\
     """
-        Help:
+     {
+        "ignore": false,
+        "brief":"Just some basic Reddit commands. Use them to make your or someones day better",
 
-        Brief:
-        Just some basic Reddit commands. Use them to make your or someones day better
+        "commands":{
+            "reddit image":{
+                "desc": "The bot will send an image from given subredit. Random also works!",
 
-        Usage:
-        command //reddit image [subreddit name]:
-            The bot will send an image from given subredit. Random also works!
-
-        End_help:
-        """
+                "args":{
+                    "subreddit name": "A subreddit from which you want to gen a random image"
+                }
+            }
+        }
+    } 
+    """
 
     def __init__(self, bot, config_manager):
         self.bot = bot

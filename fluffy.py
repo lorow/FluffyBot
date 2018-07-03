@@ -13,7 +13,6 @@ import cogs.core.utils.ErrorCodes as errorCodes
 class FluffyBot(commands.Bot):
 
     def __init__(self):
-        self.errorCodes = errorCodes.bcolors()
         self.configManager = configJson.ConfigManager()
 
         self._opts = {'command_prefix': self.configManager.get_field('command_prefix'),
@@ -60,10 +59,10 @@ class FluffyBot(commands.Bot):
             try:
                 self.additional_dep[dependency] = dep.setup()
             except AttributeError:
-                print(self.errorCodes.WARNING +
+                print(errorCodes.bcolors.WARNING +
                       'WARNING: dependency {dep} has no setup function and thus can not be added automatically'
                       .format(dep=dependency)
-                      + self.errorCodes.ENDC)
+                      + errorCodes.bcolors.ENDC)
 
     def _prepare_dependencies(self, cog):
         """populates 'dict' containing all of the needed dependencies by cog"""

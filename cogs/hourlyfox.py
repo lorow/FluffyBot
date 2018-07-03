@@ -3,22 +3,34 @@ from discord.ext import commands
 
 
 class HourlyFox(object):
+
+
+    __json_doc__ =\
     """
-        Help:
+     {
+        "ignore": false,
+        "brief":"
+            A new floof every hour!
+            By default the bot won't send anything unless you tell it so. It also won't send anything if it was the last one
+            to send a message.
+        ",
 
-        Brief:
-        A new floof every hour!
-        By default the bot won't send anything unless you tell it so. It also won't send anything if it was the last one
-        to send a message.
+        "commands":{
+            "sendFluffs":{
+                "desc": "Adds the channel from which this was executed to the list of awaiting for foxxos",
 
-        Usage:
-        command //sendFluffs [optional: ignore_limit] - if you want the bot to ignore the limit:
-            Adds the channel from which this was executed to the list of awaiting for foxxos
-        command //stopSending:
-            Removes the channel from which this was executed from mentioned above list
-
-        End_help:
-        """
+                "args":{
+                    "ignore_limit"  : "[Optional] if you want the bot to ignore the limit"
+                }
+            },
+            
+            "stopSending":{
+                "desc": "Removes the channel from which this was executed from mentioned above list",
+                "args":{}
+            }
+        }
+     } 
+    """
 
     def __init__(self, bot, config_manager, event_manager):
         self.bot = bot

@@ -7,18 +7,27 @@ from discord.ext import commands
 
 class E926(object):
 
-    """
-    Help:
 
-    Brief:
-    Plugin searching through e926 image booru
-
-    Usage:
-    command //e9 image [optional amount] query:
-        Bot will send some furbals, just for you!
-
-    End_help:
-    """
+    __json_doc__ = \
+        """
+         {
+            "ignore": false,
+            "brief":"
+                Plugin searching through e926 image booru
+            ",
+  
+            "commands":{
+                "e9 image":{
+                    "desc": "Bot will send some furbals, just for you!",
+  
+                    "args":{
+                        "amount"  : "[Optional] how many images you want to get, 1 by default",
+                        "query"   : "just your regular search query"
+                    }
+                }
+            }
+         } 
+        """
 
     def __init__(self, bot):
         self.bot = bot

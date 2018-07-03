@@ -5,18 +5,24 @@ from discord.ext import commands
 
 class Wiki(object):
 
+    __json_doc__ =\
     """
-        Help:
+     {
+        "ignore": false,
+        "brief":"Plugin searching through wikipedia",
 
-        Brief:
-        Plugin searching through wikipedia
+        "commands":{
+            "wiki":{
+                "desc": "Returns one definition at a time",
 
-        Usage:
-        command //wiki [lang] [query]:
-            Returns one definition at a time
-
-        End_help:
-        """
+                "args":{
+                    "lang"  : "The lang you want to use",
+                    "query" : "Things you want to search for"
+                }
+            }
+          }
+        } 
+    """
 
     def __init__(self, bot):
         self.bot = bot

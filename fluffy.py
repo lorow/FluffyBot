@@ -25,12 +25,11 @@ class FluffyBot(commands.Bot):
             'config_manager': self.configManager
         }
 
-        # preparing the logger
         self.logger = logging.getLogger('discord')
         self.handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
         super().__init__(**self._opts)
 
-        # and finally running
+
         self._run()
 
     async def on_ready(self):
@@ -40,10 +39,11 @@ class FluffyBot(commands.Bot):
         print('_ _ _ _ _ _ _ _ _ _')
 
     async def on_error(self, event_method, *args, **kwargs):
-        pass
+        print(event_method)
 
     async def on_message(self, message):
         await self.additional_dep['event_manager'].notify("on_message", message)
+
         await self.process_commands(message)
 
     def _collect_dependencies(self):

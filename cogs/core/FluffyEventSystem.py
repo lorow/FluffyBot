@@ -1,5 +1,6 @@
 import inspect
 from collections import defaultdict
+import cogs.core.utils.ErrorCodes as errorCodes
 
 
 class EventHook(object):
@@ -25,11 +26,13 @@ class EventHook(object):
         if len(self.events[name_of_the_event]) == 0:
             pass
 
-        for listener in self.events[name_of_the_event]:
-            if inspect.iscoroutinefunction(listener):
-                await listener(*args, **keywargs)
-            else:
-                listener(*args, **keywargs)
+        if self.events[name_of_the_event]:
+            for listener in self.events[name_of_the_event]:
+                if inspect.iscoroutinefunction(listener):
+                    await listener(*args, **keywargs)
+                else:
+                    listener(*args, **keywargs)
+
 
 def setup():
     return EventHook()

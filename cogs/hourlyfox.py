@@ -49,16 +49,16 @@ class HourlyFox(object):
         self.eventManager.append_listener("lorow23", self.send_link)
 
     async def change_last_id(self, message):
+
         # update the last id only if the title of the embedded message is the same as the default title
         try:
             if message.embeds[0].title == self.default_title:
                 self.last_id[message.channel.id] = message.author.id
             else:
                 self.last_id[message.channel.id] = 0 # just nothing, so the bot can simply ignore it
-        except Exception as e:
-            print(e)
-
-        print('{c} {i}}'.format(c = message.channel.id, i = self.last_id[message.channel.id]))
+        except Exception:
+            # if it does not embed anything, then it's not bots message, ignore it
+            pass
 
     @commands.command()
     async def sendFluffs(self, ctx, ignore="False"):
@@ -95,4 +95,5 @@ class HourlyFox(object):
 
 
 def setup(bot, config_manager, event_manager):
+    print("hourlyFox has been added")
     bot.add_cog(HourlyFox(bot, config_manager, event_manager))

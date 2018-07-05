@@ -4,8 +4,6 @@ from discord.ext import commands
 
 
 class fun_commands(object):
-
-
     __json_doc__ = \
         """
          {

@@ -2,7 +2,7 @@ import ujson
 from cogs.core.utils import ErrorCodes
 import discord
 from discord.ext import commands
-
+import difflib
 
 class HelpModule(object):
 
@@ -53,10 +53,85 @@ class HelpModule(object):
             if "ignore" in doc and doc['ignore'] is True:
                 del self.docs[cog]
 
+    async def prepare_module_names(self):
+        return "\n".join(self.docs.keys())
+
+    async def prepare_default_embed(self, embed, ctx):
+        embed.title = ctx.bot.user.name
+        embed.set_thumbnail(url=ctx.bot.user.avatar_url)
+        return embed
+
+    async def prepare_embed_help(self, embed, ctx):
+
+        embed.color = discord.Colour(0x8cff00)
+
+        embed.add_field(
+            name="@{author}".format(author=ctx.author.name),
+            value="Here's some help for you!",
+            inline=False
+        )
+
+        embed.add_field(
+            name="Current prefixes",
+            value= "```" + ', '.join(ctx.bot._opts['command_prefix']) + "```",
+            inline=False
+        )
+
+        embed.add_field(
+            name="How to use",
+            value="Simply write //help *module* - this will show more info about given module \n",
+            inline=False
+        )
+
+        embed.add_field(
+            name="Active modules",
+            value="```css\n{modules}```".format(modules=await self.prepare_module_names()),
+            inline=False
+        )
+
+        embed.add_field(
+            name="Useful links",
+            value=":link: [Website](https://discord.com)\n"
+                  ":bulb: [Github](https://github.com/lorow/fluffy)\n",
+            inline=False
+        )
+
+        embed.add_field(
+            name="Development",
+            value=":clipboard:[On Trello!](https://trello.com/b/4WdID9tN/fluffybot)",
+            inline=False
+        )
+
+        embed.add_field(
+            name="Want me on your server?",
+            value=":space_invader: [Invite me!](https://discord.com)"
+        )
+
+        embed.add_field(
+            name="Bot version",
+            value="Fluffy ``2.0``"
+        )
+
+        embed.set_footer(
+            text="In case something goes wrong, send me a message -> #lorow6600"
+        )
+
+        return embed
+
+    async def prepare_embed_module(self, embed, ctx, module):
+        return embed
+
 
     @commands.command()
-    async def help(self, ctx):
-        await  ctx.send("help")
+    async def help(self, ctx, *, module: str = ''):
+
+        embed = await self.prepare_default_embed(discord.Embed(), ctx)
+
+        if not module:
+           await ctx.send(embed=await self.prepare_embed_help(embed, ctx))
+        else:
+            await ctx.send(embed=await self.prepare_embed_module(embed, ctx, module))
+
 
 def setup(bot, config_manager):
     print("Added HelpModule")

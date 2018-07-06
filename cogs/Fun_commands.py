@@ -3,7 +3,7 @@ import random
 from discord.ext import commands
 
 
-class fun_commands(object):
+class Fun_commands(object):
     __json_doc__ = \
         """
          {
@@ -157,4 +157,4 @@ class fun_commands(object):
 
 def setup(bot):
     print("added UserUtils module")
-    bot.add_cog(fun_commands(bot))
+    bot.add_cog(Fun_commands(bot))

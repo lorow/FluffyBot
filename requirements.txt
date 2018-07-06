@@ -13,7 +13,7 @@ cogs == 0.4.1
 # cogs\HelpModule.py: 1,2
 # cogs\Reddit.py: 5
 # cogs\e926.py: 4,5
-# cogs\fun_commands.py: 3
+# cogs\Fun_commands.py: 3
 # cogs\googlemodule.py: 1
 # cogs\hourlyfox.py: 1,2
 # cogs\tags.py: 1

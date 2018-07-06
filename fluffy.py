@@ -79,7 +79,7 @@ class FluffyBot(commands.Bot):
            when the bot starts to load plugins
         """
         # this will get us a tuple containing foobar("name of the cog", "the cog")
-        # for example foobar("fun", cogs.fun_commands)
+        # for example foobar("fun", cogs.Fun_commands)
 
         foobar = zip(self.configManager.get_field('extensions').keys(),
                      self.configManager.get_field('extensions').values())

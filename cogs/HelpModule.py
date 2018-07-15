@@ -119,28 +119,54 @@ class HelpModule(object):
 
         return embed
 
-    async def prepare_command_list(self, module):
-        if len(self.docs[module]['commands']) > 0:
-            for key, params in self.docs[module]['commands'].items():
-                print(key)
-                print(params)
-            return "yep, there are some commands, gotta try"
+    async def prepare_fields(self, name, module, command):
 
-        else:
-            return "There are no commands"
+        fields = ""
 
-    async def prepare_embed_module(self, embed, ctx, module):
+        for field, desc in module["commands"][command]["args"].items():
+            if name:
+                fields += " [{field}] ".format(field=field)
+            else:
+                fields += "css\n[{field}] - {desc} \n\n".format(field=field, desc=desc)
+
+        return fields
+
+    async def prepare_command_list(self, embed, _module, ctx):
+
+        for command in enumerate(_module["commands"]):
+
+            embed.add_field(
+                name="{prefix}".format(prefix=ctx.bot._opts['command_prefix'][0])
+                     + command[1]
+                     + await self.prepare_fields(True, _module, command[1]),
+
+                value="```{fields}```".format(fields=await self.prepare_fields(False, _module, command[1])),
+                inline=False
+            )
+
+            # if there are no args provided, the prepare_fields() will return nothing, thus leaving the embed with
+            # ugly ``````, here we are fixing that
+
+            if embed.fields[command[0]].value in "``````":
+                embed.set_field_at(
+                    index=command[0],
+                    name=embed.fields[command[0]].name,
+                    value="```css\n---------```",
+                    inline=False
+                )
+
+    async def prepare_embed_module(self, embed, ctx, _module):
         mod = None
 
         try:
-            mod = self.docs[module]
+            mod = self.docs[_module]
         except KeyError:
-            similarities = difflib.get_close_matches(module, self.docs.keys())
+            similarities = difflib.get_close_matches(_module, self.docs.keys())
             embed.add_field(
                 name="Opps, something went wrong.",
-                value= "here are some similar things: "if len(similarities) > 0 else "It seem that this thing doesn't exist"
+                value="here are some similar things: "if len(similarities) else "It seem that this thing doesn't exist"
             )
-            if len(similarities) > 0:
+            if len(similarities):
                 embed.add_field(
                     name="Did you want to get help for any of these?",
                     value="```" + "\n".join(similarities) + "```"
@@ -148,28 +174,29 @@ class HelpModule(object):
 
         else:
             embed.add_field(
-                name="Short description for {module}".format(module=module),
-                value= mod["brief"],
+                name="Here's a short description for {module}.".format(module=_module),
+                value=mod["brief"],
                 inline=False
             )
 
-            embed.add_field(
-                name="{module}s commands".format(module=module),
-                value=await self.prepare_command_list(module),
-                inline=False
-            )
+            if len(mod["commands"]):
+                embed.add_field(
+                    name="Below are listed all the commands",
+                    value="------------------------------------------------------------------"
+                )
+                await self.prepare_command_list(embed, mod, ctx)
 
         return embed
 
     @commands.command()
-    async def help(self, ctx, *, module: str = ''):
+    async def help(self, ctx, *, _module: str = ''):
 
         embed = await self.prepare_default_embed(discord.Embed(), ctx)
 
-        if not module:
-           await ctx.send(embed=await self.prepare_embed_help(embed, ctx))
+        if not _module:
+            await ctx.send(embed=await self.prepare_embed_help(embed, ctx))
         else:
-            await ctx.send(embed=await self.prepare_embed_module(embed, ctx, module))
+            await ctx.send(embed=await self.prepare_embed_module(embed, ctx, _module))
 
 
 def setup(bot, config_manager):

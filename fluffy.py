@@ -29,7 +29,6 @@ class FluffyBot(commands.Bot):
         self.handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
         super().__init__(**self._opts)
 
-
         self._run()
 
     async def on_ready(self):
@@ -75,16 +74,11 @@ class FluffyBot(commands.Bot):
         return deps
 
     def _load_cogs(self):
-        """overrides 'discord.commands' load_cogs() function in order to let Fluffybot provide additional dependencies
+        """overrides :discord.commands: load_cogs() function in order to let Fluffybot provide additional dependencies
            when the bot starts to load plugins
         """
-        # this will get us a tuple containing foobar("name of the cog", "the cog")
-        # for example foobar("fun", cogs.Fun_commands)
 
-        foobar = zip(self.configManager.get_field('extensions').keys(),
-                     self.configManager.get_field('extensions').values())
-
-        for extension in foobar:
+        for extension in self.configManager.get_field('extensions').items():
             lib = importlib.import_module(extension[1])
             if not hasattr(lib, 'setup'):
                 del lib
@@ -96,6 +90,7 @@ class FluffyBot(commands.Bot):
 
     def _prepare_logger(self, logger, handler):
         """prepares logger to let others log their info"""
+
         logger.setLevel(logging.DEBUG)
         handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
         logger.addHandler(handler)

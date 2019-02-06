@@ -1,6 +1,5 @@
 import inspect
 from collections import defaultdict
-import cogs.core.utils.ErrorCodes as errorCodes
 
 
 class EventHook(object):
@@ -22,16 +21,26 @@ class EventHook(object):
 
         return self
 
-    async def notify(self, name_of_the_event, *args, **keywargs):
+    def remove_event(self, event: str):
+        if event in self.events:
+            self.events.pop(event)
+
+    def remove_listener(self, event: str, listener):
+
+        if event in self.events:
+            if listener in self.events[event]:
+                self.events[event].remove(listener)
+
+    async def notify(self, name_of_the_event, *args, **kwargs):
         if len(self.events[name_of_the_event]) == 0:
             pass
 
         if self.events[name_of_the_event]:
             for listener in self.events[name_of_the_event]:
                 if inspect.iscoroutinefunction(listener):
-                    await listener(*args, **keywargs)
+                    await listener(*args, **kwargs)
                 else:
-                    listener(*args, **keywargs)
+                    listener(*args, **kwargs)
 
 
 def setup():

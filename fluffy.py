@@ -41,6 +41,7 @@ class FluffyBot(commands.Bot):
         print(event_method)
 
     async def on_message(self, message):
+        # noinspection PyUnresolvedReferences
         await self.additional_dep['event_manager'].notify("on_message", message)
 
         await self.process_commands(message)

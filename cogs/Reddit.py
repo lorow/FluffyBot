@@ -53,7 +53,7 @@ class Reddit(object):
         await ctx.send("not implemented yet!")
 
     async def make_req(self, link, subreddit):
-        async with aiohttp.ClientSession(headers={'authorization': 'Client-ID'
+        async with aiohttp.ClientSession(headers={'Authorization': 'Client-ID '
                 + self.configManager.get_field('imgur_client_id')}) as cs:
 
             async with cs.get('{l}{s}'.format(l=link, s=subreddit)) as r:

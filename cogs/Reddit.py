@@ -19,7 +19,7 @@ class Reddit(object):
                 "desc": "The bot will send an image from given subredit. Random also works!",
 
                 "args":{
-                    "subreddit name": "A subreddit from which you want to gen a random image"
+                    "subreddit name": "A subreddit from which you want to get a random image"
                 }
             }
         }

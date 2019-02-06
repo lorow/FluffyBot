@@ -3,7 +3,6 @@ import peony
 
 class FluffyTwitter(object):
 
-
     __json_doc__ = \
         """
          {

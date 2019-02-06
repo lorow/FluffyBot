@@ -7,25 +7,24 @@ except ImportError:
 
 class GoogleModule(object):
 
-
     __json_doc__ =\
-    """
-     {
-        "ignore": false,
-        "brief":"This command will return whatever it finds first",
-
-        "commands":{
-            "google":{
-                "desc": "The bot will send an image from given subredit. Random also works!",
-
-                "args":{
-                    "lang"  : "lang-based version of google you'd like to use",
-                    "query" : "things you'd like to search"
+        """
+         {
+            "ignore": false,
+            "brief":"This command will return whatever it finds first",
+    
+            "commands":{
+                "google":{
+                    "desc": "The bot will send an image from given subredit. Random also works!",
+    
+                    "args":{
+                        "lang"  : "lang-based version of google you'd like to use",
+                        "query" : "things you'd like to search"
+                    }
                 }
             }
-        }
-    } 
-    """
+        } 
+        """
 
     def __init__(self, bot: commands.bot):
         self.bot = bot

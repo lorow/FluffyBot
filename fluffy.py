@@ -101,6 +101,7 @@ class FluffyBot(commands.Bot):
         self._prepare_logger(self.logger, self.handler)
         self._collect_dependencies()
         self._load_cogs()
+        # noinspection PyUnresolvedReferences
         self.additional_dep['event_manager'].append_event("on_message")
         self.run(self.configManager.get_field('testing_bot_token'))
         return self

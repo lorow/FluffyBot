@@ -7,7 +7,6 @@ from discord.ext import commands
 
 class E926(object):
 
-
     __json_doc__ = \
         """
          {
@@ -41,7 +40,8 @@ class E926(object):
         if ctx.invoked_subcommand is None:
             await ctx.send("in case you forgot: \n" +
                            "[prefix]e9 image [optional amount] query - bot will send some furbals, just for you! \n "
-                           "[prefix]e9 link [optional amount] query - bot will send an link to the original post, instead of just image!")
+                           "[prefix]e9 link [optional amount] query - bot will send an link to the original post, "
+                           "instead of just image!")
 
     @e9.command()
     async def image(self, ctx, *, arg: str):
@@ -64,7 +64,7 @@ class E926(object):
 
     async def make_req(self, query, amount):
         async with aiohttp.ClientSession() as cs:
-            req_mess = '{l}{q}{li}{a}'.format(l=self.search_link, q=query, li='&limit=', a=str(amount))
+            req_mess = '{link}{q}{li}{a}'.format(link=self.search_link, q=query, li='&limit=', a=str(amount))
             async with cs.get(req_mess) as r:
                 self.entries["entries"].append(await r.json())
 

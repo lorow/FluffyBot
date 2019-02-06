@@ -4,33 +4,32 @@ from discord.ext import commands
 
 class HourlyFox(object):
 
-
     __json_doc__ =\
-    """
-     {
-        "ignore": false,
-        "brief":"
-            A new floof every hour!
-            By default the bot won't send anything unless you tell it so. It also won't send anything if it was the last one
-            to send a message.
-        ",
-
-        "commands":{
-            "sendFluffs":{
-                "desc": "Adds the channel from which this was executed to the list of awaiting for foxxos",
-
-                "args":{
-                    "ignore_limit"  : "[Optional] if you want the bot to ignore the limit"
+        """
+         {
+            "ignore": false,
+            "brief":"
+                A new floof every hour!
+                By default the bot won't send anything unless you tell it so. It also won't send anything if it was the last one
+                to send a message.
+            ",
+    
+            "commands":{
+                "sendFluffs":{
+                    "desc": "Adds the channel from which this was executed to the list of awaiting for foxxos",
+    
+                    "args":{
+                        "ignore_limit"  : "[Optional] if you want the bot to ignore the limit"
+                    }
+                },
+                
+                "stopSending":{
+                    "desc": "Removes the channel from which this was executed from mentioned above list",
+                    "args":{}
                 }
-            },
-            
-            "stopSending":{
-                "desc": "Removes the channel from which this was executed from mentioned above list",
-                "args":{}
             }
-        }
-     } 
-    """
+         } 
+        """
 
     def __init__(self, bot, config_manager, event_manager):
         self.bot = bot
@@ -55,7 +54,7 @@ class HourlyFox(object):
             if message.embeds[0].title == self.default_title:
                 self.last_id[message.channel.id] = message.author.id
             else:
-                self.last_id[message.channel.id] = 0 # just nothing, so the bot can simply ignore it
+                self.last_id[message.channel.id] = 0  # just nothing, so the bot can simply ignore it
         except Exception:
             # if it does not embed anything, then it's not bots message, ignore it
             pass

@@ -6,7 +6,6 @@ from discord.ext import commands
 
 class DerpiBooru(object):
 
-
     __json_doc__ = \
         """
          {

@@ -6,23 +6,23 @@ from discord.ext import commands
 class Wiki(object):
 
     __json_doc__ =\
-    """
-     {
-        "ignore": false,
-        "brief":"Plugin searching through wikipedia",
-
-        "commands":{
-            "wiki":{
-                "desc": "Returns one definition at a time",
-
-                "args":{
-                    "lang"  : "The lang you want to use",
-                    "query" : "Things you want to search for"
+        """
+         {
+            "ignore": false,
+            "brief":"Plugin searching through wikipedia",
+    
+            "commands":{
+                "wiki":{
+                    "desc": "Returns one definition at a time",
+    
+                    "args":{
+                        "lang"  : "The lang you want to use",
+                        "query" : "Things you want to search for"
+                    }
                 }
-            }
-          }
-        } 
-    """
+              }
+            } 
+        """
 
     def __init__(self, bot):
         self.bot = bot

@@ -21,8 +21,8 @@ ytdl_format_options = {
     'logtostderr': False,
     'quiet': False,
     'no_warnings': False,
-    'default_search': 'ytsearch5', # the amount of entries we need
-    'source_address': '0.0.0.0', # bind to ipv4 since ipv6 addresses cause issues sometimes
+    'default_search': 'ytsearch5',  # the amount of entries we need
+    'source_address': '0.0.0.0',  # bind to ipv4 since ipv6 addresses cause issues sometimes
 }
 ffmpeg_options = {'before_options': '-nostdin', 'options': '-vn'}
 
@@ -53,24 +53,27 @@ class YTDLSource(discord.PCMVolumeTransformer):
         return self.__getattribute__(item)
 
     @classmethod
-    async def get_entries(cls, ctx, search: str, *, loop, download=False):
-        try:
-            loop = loop or asyncio.get_event_loop()
+    async def get_entries(cls, search: str, *, loop, download=False):
 
-            to_run = partial(ytdl.extract_info, url=search, download=download)
-            data = await loop.run_in_executor(None, to_run)
-            if 'entries' in data:
-                return data['entries']
+        loop = loop or asyncio.get_event_loop()
 
-        except Exception as e:
-            print(type(e))
-            print(e)
+        to_run = partial(ytdl.extract_info, url=search, download=download)
+        data = await loop.run_in_executor(None, to_run)
 
+        if 'entries' in data:
+            return data['entries']
+        elif search.__contains__("https://www.youtube.com/watch?v="):
+            return data
         return {}
 
     @classmethod
-    async def create_source(cls, ctx, data):
-        return cls(discord.FFmpegPCMAudio(None), data=data, requester=ctx.author)
+    async def create_source(cls, ctx, data, download=False):
+        if download:
+            source = ytdl.prepare_filename(data)
+        else:
+            return {'webpage_url': data['webpage_url'], 'requester': ctx.author, 'title': data['title']}
+
+        return cls(discord.FFmpegPCMAudio(source), data=data, requester=ctx.author)
 
     @classmethod
     async def regather_stream(cls, data, *, loop):
@@ -109,6 +112,7 @@ class MusicPlayer:
 
         ctx.bot.loop.create_task(self.player_loop())
 
+    #TODO break this up
     async def player_loop(self):
         """Our main player loop."""
         await self.bot.wait_until_ready()
@@ -166,8 +170,8 @@ class Music:
     def __init__(self, bot):
         self.bot = bot
         self.players = {}
-        # name:str : options:list
-        self.selectors = defaultdict(list)
+        # id:str : options:list
+        self.selectors = defaultdict(lambda: defaultdict(list))
 
     async def cleanup(self, guild):
         try:
@@ -218,16 +222,45 @@ class Music:
         return player
 
     async def prepare_options(self, entries):
-
         prep_entries = []
 
-        for number, entry in enumerate(entries):
-            prep_entries.append(str(number + 1) + entry['title'])
+        if type(entries) is list:
+            for number, entry in enumerate(entries):
+                prep_entries.append(str(number + 1) + ". " + entry['title'])
 
-        return '\n'.join(prep_entries)
+            return '\n'.join(prep_entries)
+        else:
+            return [f"1. {entries['title']}"]
+
+    async def prepare_entries_message(self, entries, embed, ctx):
+
+        embed.add_field(
+            name = "@"+ctx.author.name + ", here's something for you!",
+            value="Here are 5 possible options:",
+            inline=False
+        )
+
+        embed.add_field(
+            name="Choose one",
+            value=f"```css\n{entries}```",
+            inline=False
+        )
+
+        embed.add_field(
+            name="How to use",
+            value="To choose one simply type //select [number]",
+            inline=False
+        )
+
+        return embed
+
+    async def put_on_queue(self, selection, ctx):
+        player = self.get_player(ctx)
+        source = await YTDLSource.create_source(ctx, selection)
+        await player.queue.put(source)
 
     @commands.command(name='connect', aliases=['join'])
-    async def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
+    async def connect(self, ctx, *, channel: discord.VoiceChannel = None):
         if not channel:
             try:
                 channel = ctx.author.voice.channel
@@ -258,26 +291,21 @@ class Music:
         vc = ctx.voice_client
 
         if not vc:
-            await ctx.invoke(self.connect_)
+            await ctx.invoke(self.connect)
 
-        # player = self.get_player(ctx)
-        # await player.queue.put(source)
-
-        # If download is False, source will be a dict which will be used later to regather the stream.
-        # If download is True, source will be a discord.FFmpegPCMAudio with a VolumeTransformer.
-        # source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop, download=False)
-        entries = await YTDLSource.get_entries(ctx, search, loop=self.bot.loop, download=False)
-        self.selectors[ctx.author.id].append(entries)
-
+        entries = await YTDLSource.get_entries(search, loop=self.bot.loop, download=False)
         options = await self.prepare_options(entries)
 
+        self.selectors[ctx.author.guild.id][ctx.author.id].append(entries)
+        print(entries)
+        await self.put_on_queue(entries, ctx)
+
+        await ctx.send(embed=await self.prepare_entries_message(options, discord.Embed(), ctx))
 
     @commands.command()
     async def select(self, ctx, position):
-        if ctx.author not in self.selectors:
+        if ctx.author not in self.selectors[ctx.author.guild.id]:
             return await ctx.send("You have nothing to select from")
-
-
 
     @commands.command()
     async def pause(self, ctx):
@@ -293,7 +321,7 @@ class Music:
         await ctx.send(f'**`{ctx.author}`**: Paused the song')
 
     @commands.command(name='resume')
-    async def resume_(self, ctx):
+    async def resume(self, ctx):
         """Resume the currently paused song."""
         vc = ctx.voice_client
 
@@ -306,7 +334,7 @@ class Music:
         await ctx.send(f'**`{ctx.author}`**: Resumed the song')
 
     @commands.command(name='skip')
-    async def skip_(self, ctx):
+    async def skip(self, ctx):
         """Skip the song."""
         vc = ctx.voice_client
 
@@ -323,6 +351,8 @@ class Music:
 
     @commands.command()
     async def playlist(self, ctx):
+
+        #TODO make a pretty message
         """Retrieve a basic queue of upcoming songs."""
         vc = ctx.voice_client
 
@@ -343,6 +373,8 @@ class Music:
 
     @commands.command(name='now_playing', aliases=['np', 'current', 'currentsong', 'playing'])
     async def now_playing_(self, ctx):
+
+        #TODO make a pretty message
         """Display information about the currently playing song."""
         vc = ctx.voice_client
 

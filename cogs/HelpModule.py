@@ -20,8 +20,8 @@ class HelpModule(object):
                     "arg-name": "desc"
                 }
             }
-          }
-        } 
+        }
+     } 
         """
 
     def __init__(self, bot, cogs, config_manager):

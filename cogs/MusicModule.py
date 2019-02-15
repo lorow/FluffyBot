@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 import discord
 from discord.ext import commands
 
@@ -7,9 +5,10 @@ import asyncio
 import itertools
 import sys
 import traceback
+from collections import defaultdict
 from async_timeout import timeout
 from functools import partial
-import youtube_dl
+from youtube_dl import YoutubeDL
 
 ytdl_format_options = {
     'format': 'bestaudio/worst',
@@ -24,9 +23,11 @@ ytdl_format_options = {
     'default_search': 'ytsearch5',  # the amount of entries we need
     'source_address': '0.0.0.0',  # bind to ipv4 since ipv6 addresses cause issues sometimes
 }
-ffmpeg_options = {'before_options': '-nostdin', 'options': '-vn'}
+ffmpeg_options = {'before_options': '-nostdin -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
+                  'options': '-vn'}
 
-ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
+
+ytdl = YoutubeDL(ytdl_format_options)
 
 
 class VoiceConnectionError(commands.CommandError):
@@ -53,27 +54,22 @@ class YTDLSource(discord.PCMVolumeTransformer):
         return self.__getattribute__(item)
 
     @classmethod
-    async def get_entries(cls, search: str, *, loop, download=False):
-
+    async def get_entries(cls, search: str, *, loop):
+        """Downloads five videos of given query or the one from the link"""
         loop = loop or asyncio.get_event_loop()
-
-        to_run = partial(ytdl.extract_info, url=search, download=download)
+        to_run = partial(ytdl.extract_info, url=search, download=False)
         data = await loop.run_in_executor(None, to_run)
 
         if 'entries' in data:
-            return data['entries']
-        elif search.__contains__("https://www.youtube.com/watch?v="):
-            return data
-        return {}
+            data = data['entries']
+
+        return data
 
     @classmethod
-    async def create_source(cls, ctx, data, download=False):
-        if download:
-            source = ytdl.prepare_filename(data)
-        else:
-            return {'webpage_url': data['webpage_url'], 'requester': ctx.author, 'title': data['title']}
+    async def create_source(cls, data, ctx):
+        await ctx.send(f"Added {data['title']} to the queue")
 
-        return cls(discord.FFmpegPCMAudio(source), data=data, requester=ctx.author)
+        return {'webpage_url': data['webpage_url'], 'requester': ctx.author, 'title': data['title']}
 
     @classmethod
     async def regather_stream(cls, data, *, loop):
@@ -85,7 +81,10 @@ class YTDLSource(discord.PCMVolumeTransformer):
         to_run = partial(ytdl.extract_info, url=data['webpage_url'], download=False)
         data = await loop.run_in_executor(None, to_run)
 
-        return cls(discord.FFmpegPCMAudio(data['url']), data=data, requester=requester)
+        return cls(discord.FFmpegPCMAudio(data['url'],
+                                          before_options=ffmpeg_options['before_options'],
+                                          options=ffmpeg_options['options']),
+                   data=data, requester=requester)
 
 
 class MusicPlayer:
@@ -112,7 +111,6 @@ class MusicPlayer:
 
         ctx.bot.loop.create_task(self.player_loop())
 
-    #TODO break this up
     async def player_loop(self):
         """Our main player loop."""
         await self.bot.wait_until_ready()
@@ -130,8 +128,6 @@ class MusicPlayer:
                 return
 
             if not isinstance(source, YTDLSource):
-                # Source was probably a stream (not downloaded)
-                # So we should regather to prevent stream expiration
                 try:
                     source = await YTDLSource.regather_stream(source, loop=self.bot.loop)
                 except Exception as e:
@@ -167,10 +163,12 @@ class Music:
 
     __slots__ = ('bot', 'players', 'selectors')
 
+    __json_doc__ = "{" \
+                   "}"
+
     def __init__(self, bot):
         self.bot = bot
         self.players = {}
-        # id:str : options:list
         self.selectors = defaultdict(lambda: defaultdict(list))
 
     async def cleanup(self, guild):
@@ -213,6 +211,7 @@ class Music:
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 
     def get_player(self, ctx):
+        """Retrieve the guild player, or generate one."""
         try:
             player = self.players[ctx.guild.id]
         except KeyError:
@@ -221,46 +220,10 @@ class Music:
 
         return player
 
-    async def prepare_options(self, entries):
-        prep_entries = []
-
-        if type(entries) is list:
-            for number, entry in enumerate(entries):
-                prep_entries.append(str(number + 1) + ". " + entry['title'])
-
-            return '\n'.join(prep_entries)
-        else:
-            return [f"1. {entries['title']}"]
-
-    async def prepare_entries_message(self, entries, embed, ctx):
-
-        embed.add_field(
-            name = "@"+ctx.author.name + ", here's something for you!",
-            value="Here are 5 possible options:",
-            inline=False
-        )
-
-        embed.add_field(
-            name="Choose one",
-            value=f"```css\n{entries}```",
-            inline=False
-        )
-
-        embed.add_field(
-            name="How to use",
-            value="To choose one simply type //select [number]",
-            inline=False
-        )
-
-        return embed
-
-    async def put_on_queue(self, selection, ctx):
-        player = self.get_player(ctx)
-        source = await YTDLSource.create_source(ctx, selection)
-        await player.queue.put(source)
-
     @commands.command(name='connect', aliases=['join'])
-    async def connect(self, ctx, *, channel: discord.VoiceChannel = None):
+    async def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
+        """Connect to voice.
+        """
         if not channel:
             try:
                 channel = ctx.author.voice.channel
@@ -284,31 +247,36 @@ class Music:
 
         await ctx.send(f'Connected to: **{channel}**')
 
-    @commands.command()
-    async def play(self, ctx, *, search: str):
+    @commands.command(name='play', aliases=['sing'])
+    async def play_(self, ctx, *, search: str):
+        """Request a song and add it to the queue.
+        This command attempts to join a valid voice channel if the bot is not already in one.
+        Uses YTDL to automatically search and retrieve a song.
+        """
         await ctx.trigger_typing()
 
         vc = ctx.voice_client
 
         if not vc:
-            await ctx.invoke(self.connect)
+            await ctx.invoke(self.connect_)
 
-        entries = await YTDLSource.get_entries(search, loop=self.bot.loop, download=False)
-        options = await self.prepare_options(entries)
+        entries = await YTDLSource.get_entries(search, loop=self.bot.loop)
+        await self.print_entries(entries, ctx)
 
-        self.selectors[ctx.author.guild.id][ctx.author.id].append(entries)
-        print(entries)
-        await self.put_on_queue(entries, ctx)
-
-        await ctx.send(embed=await self.prepare_entries_message(options, discord.Embed(), ctx))
+        self.selectors[ctx.guild.id][ctx.author.id].append(entries)
 
     @commands.command()
-    async def select(self, ctx, position):
-        if ctx.author not in self.selectors[ctx.author.guild.id]:
-            return await ctx.send("You have nothing to select from")
+    async def select(self, ctx, selection: int):
 
-    @commands.command()
-    async def pause(self, ctx):
+        player = self.get_player(ctx)
+        source = await YTDLSource.create_source(data=self.selectors[ctx.guild.id][ctx.author.id][-1][selection - 1],
+                                                ctx=ctx)
+
+        await ctx.send(self.selectors[ctx.guild.id][ctx.author.id][-1][selection - 1]['title'])
+        player.queue.put_nowait(source)
+
+    @commands.command(name='pause')
+    async def pause_(self, ctx):
         """Pause the currently playing song."""
         vc = ctx.voice_client
 
@@ -318,28 +286,28 @@ class Music:
             return
 
         vc.pause()
-        await ctx.send(f'**`{ctx.author}`**: Paused the song')
+        await ctx.send(f'**`@{ctx.author}`**: Paused the song.')
 
     @commands.command(name='resume')
-    async def resume(self, ctx):
+    async def resume_(self, ctx):
         """Resume the currently paused song."""
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
-            return await ctx.send('I am not currently playing anything!')
+            return await ctx.send('Nothing is currently being played')
         elif not vc.is_paused():
             return
 
         vc.resume()
-        await ctx.send(f'**`{ctx.author}`**: Resumed the song')
+        await ctx.send(f'**`@{ctx.author}`**: Resumed the song.')
 
     @commands.command(name='skip')
-    async def skip(self, ctx):
+    async def skip_(self, ctx):
         """Skip the song."""
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
-            return await ctx.send('I am not currently playing anything!', delete_after=20)
+            return await ctx.send('Nothing is currently being played')
 
         if vc.is_paused():
             pass
@@ -347,12 +315,10 @@ class Music:
             return
 
         vc.stop()
-        await ctx.send(f'**`{ctx.author}`**: Skipped the song!')
+        await ctx.send(f'**`{ctx.author}`**: Skipped the song')
 
-    @commands.command()
-    async def playlist(self, ctx):
-
-        #TODO make a pretty message
+    @commands.command(name='queue', aliases=['q', 'playlist'])
+    async def queue_info(self, ctx):
         """Retrieve a basic queue of upcoming songs."""
         vc = ctx.voice_client
 
@@ -373,17 +339,15 @@ class Music:
 
     @commands.command(name='now_playing', aliases=['np', 'current', 'currentsong', 'playing'])
     async def now_playing_(self, ctx):
-
-        #TODO make a pretty message
         """Display information about the currently playing song."""
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
-            return await ctx.send('I am not currently connected to voice!')
+            return await ctx.send('Nothing is currently being played')
 
         player = self.get_player(ctx)
         if not player.current:
-            return await ctx.send('I am not currently playing anything!')
+            return await ctx.send('Nothing is currently being played')
 
         try:
             # Remove our previous now_playing message.
@@ -396,18 +360,15 @@ class Music:
 
     @commands.command(name='volume', aliases=['vol'])
     async def change_volume(self, ctx, *, vol: float):
-        """Change the player volume.
-        Parameters
-        ------------
-        vol: float or int [Required]
-            The volume to set the player to in percentage. This must be between 1 and 100.
+        """
+        Change the player volume.
         """
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
             return await ctx.send('I am not currently connected to voice!')
 
-        if vol not in range(0, 101):
+        if not 0 < vol < 101:
             return await ctx.send('Please enter a value between 1 and 100.')
 
         player = self.get_player(ctx)
@@ -419,7 +380,7 @@ class Music:
         await ctx.send(f'**`{ctx.author}`**: Set the volume to **{vol}%**')
 
     @commands.command(name='quit')
-    async def quit(self, ctx):
+    async def stop_(self, ctx):
         """Stop the currently playing song and destroy the player.
         !Warning!
             This will destroy the player assigned to your guild, also deleting any queued songs and settings.
@@ -427,11 +388,35 @@ class Music:
         vc = ctx.voice_client
 
         if not vc or not vc.is_connected():
-            return await ctx.send('I am not currently playing anything!')
+            return await ctx.send('Nothing is currently being played')
 
         await self.cleanup(ctx.guild)
 
+    async def prepare_options(self, entries):
+        prep_entries = []
+
+        if type(entries) is list:
+            for number, entry in enumerate(entries):
+                prep_entries.append(str(number + 1) + ". " + entry['title'])
+
+            return '\n'.join(prep_entries)
+        else:
+            return '\n'+f"1. {entries['title']}"
+
+    async def print_entries(self, entries, ctx):
+        embed = discord.Embed()
+        options = await self.prepare_options(entries)
+        embed.add_field(
+            name=f"@{ctx.author}, here's what I've found:",
+            value=f"```css\n{options}```"
+        )
+        embed.add_field(
+            name="Here's how to use:",
+            value="//select [number you wish to be played]"
+        )
+
+        await ctx.send(embed=embed)
+
 
 def setup(bot):
-    print("Added MusicModule")
     bot.add_cog(Music(bot))

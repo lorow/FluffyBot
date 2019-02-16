@@ -46,6 +46,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
         self.title = data.get('title')
         self.web_url = data.get('webpage_url')
+        self.duration = data.get('duration')
 
     def __getitem__(self, item: str):
         """Allows us to access attributes similar to a dict.
@@ -139,7 +140,7 @@ class MusicPlayer:
             self.current = source
 
             self._guild.voice_client.play(source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
-            self.np = await self._channel.send(f'**Now Playing:** `{source.title}` requested by '
+            self.np = await self._channel.send(f'**Now Playing:** `{source.title} {source.duration}` requested by '
                                                f'`{source.requester}`')
             await self.next.wait()
 
@@ -220,6 +221,24 @@ class Music:
 
         return player
 
+    async def cleanup_selections(self, ctx):
+        """cleans up the selection queue"""
+        # if this user in this guild has something left, pop it
+        if self.selectors[ctx.guild.id][ctx.author.id]:
+            poped = self.selectors[ctx.guild.id][ctx.author.id].pop(-1)
+            await ctx.send(f"poped {poped[0]['title']}")
+        # else, pop this user from the selection queue
+        if not self.selectors[ctx.guild.id][ctx.author.id]:
+            poped_user = ctx.author.id
+            del self.selectors[ctx.guild.id][ctx.author.id]
+            await ctx.send(f"poped user {poped_user}")
+
+        # if this guild is empty, pop it too
+        if not self.selectors[ctx.guild.id]:
+            poped_guild = ctx.guild.id
+            del self.selectors[ctx.guild.id]
+            await ctx.send(f"poped guild {poped_guild}")
+
     @commands.command(name='connect', aliases=['join'])
     async def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
         """Connect to voice.
@@ -258,7 +277,11 @@ class Music:
         vc = ctx.voice_client
 
         if not vc:
-            await ctx.invoke(self.connect_)
+            try:
+                await ctx.invoke(self.connect_)
+            except Exception as e:
+                print(e)
+                await ctx.send("Something went wrong, please try again")
 
         entries = await YTDLSource.get_entries(search, loop=self.bot.loop)
         await self.print_entries(entries, ctx)
@@ -268,12 +291,16 @@ class Music:
     @commands.command()
     async def select(self, ctx, selection: int):
 
+        if ctx.author.id not in self.selectors[ctx.guild.id]:
+            return await ctx.send(f"@{ctx.author}, you have nothing to select from")
+
         player = self.get_player(ctx)
         source = await YTDLSource.create_source(data=self.selectors[ctx.guild.id][ctx.author.id][-1][selection - 1],
                                                 ctx=ctx)
 
         await ctx.send(self.selectors[ctx.guild.id][ctx.author.id][-1][selection - 1]['title'])
-        player.queue.put_nowait(source)
+        await player.queue.put(source)
+        await self.cleanup_selections(ctx)
 
     @commands.command(name='pause')
     async def pause_(self, ctx):

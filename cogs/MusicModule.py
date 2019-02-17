@@ -68,8 +68,6 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
     @classmethod
     async def create_source(cls, data, ctx):
-        await ctx.send(f"Added {data['title']} to the queue")
-
         return {'webpage_url': data['webpage_url'], 'requester': ctx.author, 'title': data['title']}
 
     @classmethod
@@ -107,7 +105,7 @@ class MusicPlayer:
         self.next = asyncio.Event()
 
         self.np = None  # Now playing message
-        self.volume = .5
+        self.volume = 1
         self.current = None
 
         ctx.bot.loop.create_task(self.player_loop())
@@ -225,19 +223,15 @@ class Music:
         """cleans up the selection queue"""
         # if this user in this guild has something left, pop it
         if self.selectors[ctx.guild.id][ctx.author.id]:
-            poped = self.selectors[ctx.guild.id][ctx.author.id].pop(-1)
-            await ctx.send(f"poped {poped[0]['title']}")
+            self.selectors[ctx.guild.id][ctx.author.id].pop(-1)
+
         # else, pop this user from the selection queue
         if not self.selectors[ctx.guild.id][ctx.author.id]:
-            poped_user = ctx.author.id
             del self.selectors[ctx.guild.id][ctx.author.id]
-            await ctx.send(f"poped user {poped_user}")
 
         # if this guild is empty, pop it too
         if not self.selectors[ctx.guild.id]:
-            poped_guild = ctx.guild.id
             del self.selectors[ctx.guild.id]
-            await ctx.send(f"poped guild {poped_guild}")
 
     @commands.command(name='connect', aliases=['join'])
     async def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
@@ -297,9 +291,9 @@ class Music:
         player = self.get_player(ctx)
         source = await YTDLSource.create_source(data=self.selectors[ctx.guild.id][ctx.author.id][-1][selection - 1],
                                                 ctx=ctx)
-
-        await ctx.send(self.selectors[ctx.guild.id][ctx.author.id][-1][selection - 1]['title'])
         await player.queue.put(source)
+        q = player.queue._queue
+        await ctx.send(f"Added {self.selectors[ctx.guild.id][ctx.author.id][-1][selection - 1]['title']}")
         await self.cleanup_selections(ctx)
 
     @commands.command(name='pause')
@@ -353,11 +347,15 @@ class Music:
             return await ctx.send('I am not currently connected to voice!')
 
         player = self.get_player(ctx)
-        if player.queue.empty():
+
+        print(player.current)
+
+        if player.queue.empty() and player.current is None:
             return await ctx.send('There are currently no more queued songs.')
 
-        # Grab up to 5 entries from the queue...
-        upcoming = list(itertools.islice(player.queue._queue, 0, 5))
+        # Grab up to 5 entries from the queue and the current one...
+        current = player.current
+        upcoming = [current] + list(itertools.islice(player.queue._queue, 0, 5))
 
         fmt = '\n'.join(f'**`{_["title"]}`**' for _ in upcoming)
         embed = discord.Embed(title=f'Upcoming - Next {len(upcoming)}', description=fmt)

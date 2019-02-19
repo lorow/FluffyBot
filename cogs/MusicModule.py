@@ -233,6 +233,36 @@ class Music:
         if not self.selectors[ctx.guild.id]:
             del self.selectors[ctx.guild.id]
 
+    async def prepare_options(self, entries):
+        prep_entries = []
+
+        if type(entries) is list:
+            for number, entry in enumerate(entries):
+                prep_entries.append(str(number + 1) + ". " + entry['title'])
+
+            return '\n'.join(prep_entries)
+        else:
+            return '\n'+f"1. {entries['title']}"
+
+    async def print_entries(self, entries, ctx):
+        embed = discord.Embed()
+        options = await self.prepare_options(entries)
+        embed.add_field(
+            name=f"@{ctx.author}, here's what I've found:",
+            value=f"```css\n{options}```"
+        )
+        embed.add_field(
+            name="Here's how to use:",
+            value="//select [number you wish to be played]"
+        )
+
+        await ctx.send(embed=embed)
+
+    async def put_on_queue(self, ctx, data):
+        player = self.get_player(ctx)
+        source = await YTDLSource.create_source(data=data,ctx=ctx)
+        await player.queue.put(source)
+
     @commands.command(name='connect', aliases=['join'])
     async def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
         """Connect to voice.
@@ -278,9 +308,14 @@ class Music:
                 await ctx.send("Something went wrong, please try again")
 
         entries = await YTDLSource.get_entries(search, loop=self.bot.loop)
-        await self.print_entries(entries, ctx)
+        # if we get a single entry, put it right away on the queue, else let the user choose
+        if type(entries) is dict:
+            await self.put_on_queue(ctx, entries)
+            await ctx.send(f"{entries['title']} added to the queue!")
+        else:
+            await self.print_entries(entries, ctx)
 
-        self.selectors[ctx.guild.id][ctx.author.id].append(entries)
+            self.selectors[ctx.guild.id][ctx.author.id].append(entries)
 
     @commands.command()
     async def select(self, ctx, selection: int):
@@ -288,11 +323,9 @@ class Music:
         if ctx.author.id not in self.selectors[ctx.guild.id]:
             return await ctx.send(f"@{ctx.author}, you have nothing to select from")
 
-        player = self.get_player(ctx)
-        source = await YTDLSource.create_source(data=self.selectors[ctx.guild.id][ctx.author.id][-1][selection - 1],
-                                                ctx=ctx)
-        await player.queue.put(source)
-        q = player.queue._queue
+        data = self.selectors[ctx.guild.id][ctx.author.id][-1][selection - 1]
+        await self.put_on_queue(ctx, data)
+
         await ctx.send(f"Added {self.selectors[ctx.guild.id][ctx.author.id][-1][selection - 1]['title']}")
         await self.cleanup_selections(ctx)
 
@@ -381,7 +414,7 @@ class Music:
             pass
 
         player.np = await ctx.send(f'**Now Playing:** `{vc.source.title}` '
-                                   f'requested by `{vc.source.requester}`')
+                                   f'requested by `{vc.source.requester}`. It\'s been playing for: {vc.source.duration}')
 
     @commands.command(name='volume', aliases=['vol'])
     async def change_volume(self, ctx, *, vol: float):
@@ -416,31 +449,6 @@ class Music:
             return await ctx.send('Nothing is currently being played')
 
         await self.cleanup(ctx.guild)
-
-    async def prepare_options(self, entries):
-        prep_entries = []
-
-        if type(entries) is list:
-            for number, entry in enumerate(entries):
-                prep_entries.append(str(number + 1) + ". " + entry['title'])
-
-            return '\n'.join(prep_entries)
-        else:
-            return '\n'+f"1. {entries['title']}"
-
-    async def print_entries(self, entries, ctx):
-        embed = discord.Embed()
-        options = await self.prepare_options(entries)
-        embed.add_field(
-            name=f"@{ctx.author}, here's what I've found:",
-            value=f"```css\n{options}```"
-        )
-        embed.add_field(
-            name="Here's how to use:",
-            value="//select [number you wish to be played]"
-        )
-
-        await ctx.send(embed=embed)
 
 
 def setup(bot):

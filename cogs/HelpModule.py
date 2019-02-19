@@ -121,10 +121,7 @@ class HelpModule(object):
 
     async def prepare_fields(self, name, module, command):
 
-        fields = ""
-
-        if not name:
-            fields = f"css\n{module['commands'][command]['desc']}"
+        fields = "" if name else f"css\n{module['commands'][command]['desc']}"
 
         for field, desc in module["commands"][command]["args"].items():
             if name:

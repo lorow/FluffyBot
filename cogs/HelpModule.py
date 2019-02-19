@@ -123,11 +123,14 @@ class HelpModule(object):
 
         fields = ""
 
+        if not name:
+            fields = f"css\n{module['commands'][command]['desc']}"
+
         for field, desc in module["commands"][command]["args"].items():
             if name:
                 fields += " [{field}] ".format(field=field)
             else:
-                fields += "css\n[{field}] - {desc} \n\n".format(field=field, desc=desc)
+                fields += "\n \n[{field}] - {desc} \n\n".format(field=field, desc=desc)
 
         return fields
 

@@ -130,8 +130,7 @@ class MusicPlayer:
                 try:
                     source = await YTDLSource.regather_stream(source, loop=self.bot.loop)
                 except Exception as e:
-                    await self._channel.send(f'There was an error processing your song.\n'
-                                             f'```css\n[{e}]\n```')
+                    await self._channel.send(f'There was an error processing your song.\n')
                     continue
 
             source.volume = self.volume
@@ -162,8 +161,67 @@ class Music:
 
     __slots__ = ('bot', 'players', 'selectors')
 
-    __json_doc__ = "{" \
-                   "}"
+    __json_doc__ ="""
+        {
+           "ignore": false,
+           "brief":"A simple music module that let's you play some good (or not) music from youtube.
+            It supports links as well as searching.",
+
+           "commands":{
+               "join":{
+                   "desc": "aliases: [connect], Command for summoning or moving the bot to a specific channel. You need to be connected to one thought",
+
+                   "args":{
+                       "channel": "The name of the channel you want the bot to join / move to"
+                   }
+               },
+               "play":{
+                   "desc": "Request a song and get it added to the queue. This command will also attempt to join your current voice channel",
+
+                   "args":{
+                       "song_name": "The name of the song you'd like to have added to the queue. You can also send a valid youtube link"
+                   }
+               },
+               "select":{
+                   "desc": "Select a song from the five the bot found on youtube",
+
+                   "args":{
+                       "index": "The number of the song you'd like to listen to."
+                   }
+               },
+               "playlist":{
+                   "desc": "asliases [queue_info, q, playlist], Shows a list of currently queued songs",
+
+                   "args":{}
+               },
+               "pause":{
+                   "desc": "Pauses the song",
+
+                   "args":{}
+               },
+               "resume":{
+                   "desc": "resumes the previously paused song",
+
+                   "args":{}
+               },
+               "current":{
+                   "desc": "aliases [np, current, playing], Shows some info about the current song",
+
+                   "args":{}
+               },
+               "skip":{
+                   "desc": "skips the current playing song",
+
+                   "args":{}
+               },
+               "quit":{
+                   "desc": "Rudely makes the bot leave the channel. The bot is sad now :c",
+
+                   "args":{}
+               },       
+           }
+       } 
+       """
 
     def __init__(self, bot):
         self.bot = bot
@@ -260,7 +318,7 @@ class Music:
 
     async def put_on_queue(self, ctx, data):
         player = self.get_player(ctx)
-        source = await YTDLSource.create_source(data=data,ctx=ctx)
+        source = await YTDLSource.create_source(data=data, ctx=ctx)
         await player.queue.put(source)
 
     @commands.command(name='connect', aliases=['join'])
@@ -414,7 +472,7 @@ class Music:
             pass
 
         player.np = await ctx.send(f'**Now Playing:** `{vc.source.title}` '
-                                   f'requested by `{vc.source.requester}`. It\'s been playing for: {vc.source.duration}')
+                                   f'requested by `{vc.source.requester}`.')
 
     @commands.command(name='volume', aliases=['vol'])
     async def change_volume(self, ctx, *, vol: float):

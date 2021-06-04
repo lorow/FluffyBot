@@ -3,8 +3,7 @@ from discord.ext import commands
 
 class UsefulCommand(object):
 
-    __json_doc__ =\
-        """
+    __json_doc__ = """
          {
             "ignore": false,
             "brief": "Probably useful commands",

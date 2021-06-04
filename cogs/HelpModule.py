@@ -41,17 +41,23 @@ class HelpModule(object):
             try:
                 self.docs[cog] = ujson.loads(instance.__json_doc__)
             except AttributeError:
-                print(ErrorCodes.bcolors.FAIL +
-                      "The {cog} is missing __json_doc__ attribute".format(cog=cog)
-                      + ErrorCodes.bcolors.ENDC)
+                print(
+                    ErrorCodes.bcolors.FAIL
+                    + "The {cog} is missing __json_doc__ attribute".format(cog=cog)
+                    + ErrorCodes.bcolors.ENDC
+                )
             except ValueError:
-                print(ErrorCodes.bcolors.FAIL +
-                      "there was an problem with decoding {cog}'s __json_doc__, check it".format(cog=cog)
-                      + ErrorCodes.bcolors.ENDC)
+                print(
+                    ErrorCodes.bcolors.FAIL
+                    + "there was an problem with decoding {cog}'s __json_doc__, check it".format(
+                        cog=cog
+                    )
+                    + ErrorCodes.bcolors.ENDC
+                )
 
     def filter_docs(self):
         for cog, doc in list(self.docs.items()):
-            if "ignore" in doc and doc['ignore'] is True:
+            if "ignore" in doc and doc["ignore"] is True:
                 del self.docs[cog]
 
     async def prepare_module_names(self):
@@ -64,54 +70,53 @@ class HelpModule(object):
 
     async def prepare_embed_help(self, embed, ctx):
 
-        embed.color = discord.Colour(0x8cff00)
+        embed.color = discord.Colour(0x8CFF00)
 
         embed.add_field(
             name="@{author}".format(author=ctx.author.name),
             value="Here's some help for you!",
-            inline=False
+            inline=False,
         )
 
         embed.add_field(
             name="Current prefixes",
-            value= "```" + ', '.join(ctx.bot._opts['command_prefix']) + "```",
-            inline=False
+            value="```" + ", ".join(ctx.bot._opts["command_prefix"]) + "```",
+            inline=False,
         )
 
         embed.add_field(
             name="How to use",
             value="Simply write //help *module* - this will show more info about given module \n",
-            inline=False
+            inline=False,
         )
 
         embed.add_field(
             name="Active modules",
-            value="```css\n{modules}```".format(modules=await self.prepare_module_names()),
-            inline=False
+            value="```css\n{modules}```".format(
+                modules=await self.prepare_module_names()
+            ),
+            inline=False,
         )
 
         embed.add_field(
             name="Useful links",
             value=":link: [Website](https://discord.com)\n"
-                  ":bulb: [Github](https://github.com/lorow/fluffy)\n",
-            inline=False
+            ":bulb: [Github](https://github.com/lorow/fluffy)\n",
+            inline=False,
         )
 
         embed.add_field(
             name="Development",
             value=":clipboard:[On Trello!](https://trello.com/b/4WdID9tN/fluffybot)",
-            inline=False
+            inline=False,
         )
 
         embed.add_field(
             name="Want me on your server?",
-            value=":space_invader: [Invite me!](https://discord.com)"
+            value=":space_invader: [Invite me!](https://discord.com)",
         )
 
-        embed.add_field(
-            name="Bot version",
-            value="Fluffy ``2.0``"
-        )
+        embed.add_field(name="Bot version", value="Fluffy ``2.0``")
 
         embed.set_footer(
             text="In case something goes wrong, send me a message -> #lorow6600"
@@ -120,9 +125,7 @@ class HelpModule(object):
         return embed
 
     async def prepare_fields(self, name, module, command):
-
         fields = "" if name else f"css\n{module['commands'][command]['desc']}"
-
         for field, desc in module["commands"][command]["args"].items():
             if name:
                 fields += " [{field}] ".format(field=field)
@@ -136,12 +139,13 @@ class HelpModule(object):
         for command in enumerate(_module["commands"]):
 
             embed.add_field(
-                name="{prefix}".format(prefix=ctx.bot._opts['command_prefix'][0])
-                     + command[1]
-                     + await self.prepare_fields(True, _module, command[1]),
-
-                value="```{fields}```".format(fields=await self.prepare_fields(False, _module, command[1])),
-                inline=False
+                name="{prefix}".format(prefix=ctx.bot._opts["command_prefix"][0])
+                + command[1]
+                + await self.prepare_fields(True, _module, command[1]),
+                value="```{fields}```".format(
+                    fields=await self.prepare_fields(False, _module, command[1])
+                ),
+                inline=False,
             )
 
             # if there are no args provided, the prepare_fields() will return nothing, thus leaving the embed with
@@ -152,7 +156,7 @@ class HelpModule(object):
                     index=command[0],
                     name=embed.fields[command[0]].name,
                     value="```css\n---------```",
-                    inline=False
+                    inline=False,
                 )
 
     async def prepare_embed_module(self, embed, ctx, _module):
@@ -164,32 +168,34 @@ class HelpModule(object):
             similarities = difflib.get_close_matches(_module, self.docs.keys())
             embed.add_field(
                 name="Opps, something went wrong.",
-                value="here are some similar things: "if len(similarities) else "It seem that this thing doesn't exist"
+                value="here are some similar things: "
+                if len(similarities)
+                else "It seem that this thing doesn't exist",
             )
             if len(similarities):
                 embed.add_field(
                     name="Did you want to get help for any of these?",
-                    value="```" + "\n".join(similarities) + "```"
+                    value="```" + "\n".join(similarities) + "```",
                 )
 
         else:
             embed.add_field(
                 name="Here's a short description for {module}.".format(module=_module),
                 value=mod["brief"],
-                inline=False
+                inline=False,
             )
 
             if len(mod["commands"]):
                 embed.add_field(
                     name="Below are listed all the commands",
-                    value="------------------------------------------------------------------"
+                    value="------------------------------------------------------------------",
                 )
                 await self.prepare_command_list(embed, mod, ctx)
 
         return embed
 
     @commands.command()
-    async def help(self, ctx, *, _module: str = ''):
+    async def help(self, ctx, *, _module: str = ""):
 
         embed = await self.prepare_default_embed(discord.Embed(), ctx)
 

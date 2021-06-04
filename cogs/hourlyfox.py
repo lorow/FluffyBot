@@ -4,8 +4,7 @@ from discord.ext import commands
 
 class HourlyFox(object):
 
-    __json_doc__ =\
-        """
+    __json_doc__ = """
          {
             "ignore": false,
             "brief":"
@@ -44,7 +43,7 @@ class HourlyFox(object):
         self.channels_type = {}
 
         self.eventManager.append_listener("on_message", self.change_last_id)
-        self.eventManager.append_listener('hourlyFox', self.send_link)
+        self.eventManager.append_listener("hourlyFox", self.send_link)
         self.eventManager.append_listener("lorow23", self.send_link)
 
     async def change_last_id(self, message):
@@ -54,7 +53,9 @@ class HourlyFox(object):
             if message.embeds[0].title == self.default_title:
                 self.last_id[message.channel.id] = message.author.id
             else:
-                self.last_id[message.channel.id] = 0  # just nothing, so the bot can simply ignore it
+                self.last_id[
+                    message.channel.id
+                ] = 0  # just nothing, so the bot can simply ignore it
         except Exception:
             # if it does not embed anything, then it's not bots message, ignore it
             pass
@@ -80,10 +81,14 @@ class HourlyFox(object):
 
     async def send_link(self, tweet):
 
-        image = tweet['entities']['media'][0]['media_url_https']
-        link = tweet['entities']['media'][0]['url']
+        image = tweet["entities"]["media"][0]["media_url_https"]
+        link = tweet["entities"]["media"][0]["url"]
         print(tweet)
-        embed_tweet = discord.Embed(title=self.default_title).set_image(url=image).set_footer(text=link)
+        embed_tweet = (
+            discord.Embed(title=self.default_title)
+            .set_image(url=image)
+            .set_footer(text=link)
+        )
 
         for channel in self.channels:
             if self.channels_type[channel] == "ignore_limit":

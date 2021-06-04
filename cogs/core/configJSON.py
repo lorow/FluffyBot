@@ -2,12 +2,11 @@ import ujson
 
 
 class ConfigManager(object):
-
     def __init__(self):
         self._load_config()
 
     def _load_config(self):
-        with open('./config.json', 'r') as config:
+        with open("./config.json", "r") as config:
             self.__dict__ = ujson.load(config)
 
     def _reload_config(self):
@@ -15,7 +14,7 @@ class ConfigManager(object):
 
     def get_field(self, field):
 
-        if field == '':
+        if field == "":
             print("you forgot something")
             quit(1)
 

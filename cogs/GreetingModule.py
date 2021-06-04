@@ -1,7 +1,6 @@
 class GreetingModule(object):
 
-    __json_doc__ =\
-        """
+    __json_doc__ = """
          {
             "ignore": false,
             "brief":"Plugin for greeting!",

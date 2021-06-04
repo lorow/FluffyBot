@@ -8,11 +8,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b9e393c-d95b-4349-a2bc-6dbadc55f9b3" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FluffyBot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FluffyBot.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/DerpiBooru.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/DerpiBooru.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/Fun_commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/Fun_commands.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/GreetingModule.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/GreetingModule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cogs/HelpModule.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/HelpModule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/MusicModule.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/MusicModule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/Reddit.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/Reddit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/TwitterManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/TwitterManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/core/FluffyEventSystem.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/core/FluffyEventSystem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/core/configJSON.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/core/configJSON.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/core/utils/ErrorCodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/core/utils/ErrorCodes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/e926.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/e926.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/googlemodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/googlemodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/hourlyfox.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/hourlyfox.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/tags.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/tags.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/useful_commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/useful_commands.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/wikipedia.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/wikipedia.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluffy.py" beforeDir="false" afterPath="$PROJECT_DIR$/fluffy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtime.txt" beforeDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/venv/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,106 +41,6 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/FluffyBot$Fluffy.coverage" NAME="Fluffy Coverage Results" MODIFIED="1550599203141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-  </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="1582558067">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="19" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.17" value="1" />
-          <entry key="project.open.time.19" value="1" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.20" value="2" />
-          <entry key="project.open.time.21" value="1" />
-          <entry key="project.open.time.22" value="1" />
-          <entry key="project.open.time.23" value="2" />
-          <entry key="project.open.time.24" value="5" />
-          <entry key="project.open.time.25" value="2" />
-          <entry key="project.open.time.26" value="2" />
-          <entry key="project.open.time.27" value="2" />
-          <entry key="project.open.time.28" value="1" />
-          <entry key="project.open.time.51" value="1" />
-          <entry key="project.opened" value="24" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="dummy" value="1" />
-          <entry key="py" value="14255" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="14255" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="json" value="2" />
-          <entry key="py" value="78" />
-          <entry key="pyi" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="JSON" value="2" />
-          <entry key="Python" value="78" />
-          <entry key="PythonStub" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.js.language.service.starts" />
-    </session>
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cogs/MusicModule.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-123">
-              <caret line="183" column="17" lean-forward="true" selection-start-line="183" selection-start-column="17" selection-end-line="183" selection-end-column="17" />
-              <folding>
-                <marker date="1550594088265" expanded="true" signature="1694:2039" ph="..." />
-                <marker date="1550594088265" expanded="true" signature="5428:5430" ph="..." />
-                <marker date="1550594088265" expanded="true" signature="9620:11146" ph="..." />
-                <marker date="1550594088265" expanded="true" signature="11140:11146" ph="..." />
-                <marker date="1550594088265" expanded="true" signature="11141:11146" ph="..." />
-                <marker date="1550594088265" expanded="true" signature="13262:13689" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="687">
-              <caret line="44" column="35" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cogs/HelpModule.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="123" column="22" selection-start-line="123" selection-start-column="22" selection-end-line="123" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/discord/ext/commands/core.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="505" selection-start-line="505" selection-end-line="505" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -196,6 +117,10 @@
     <option name="width" value="2576" />
     <option name="height" value="1096" />
   </component>
+  <component name="ProjectId" id="1tVIEUOeLWuT5ANYGpaJ6Rx83sx" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -226,28 +151,21 @@
       <pane id="Scope" />
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="YTDLSource&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/fluffy.py" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="H:\FluffyBot\cogs" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="Fluffy" type="PythonConfigurationType" factoryName="Python">
@@ -272,7 +190,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+    <configuration default="true" type="js.build_tools.gulp">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
@@ -297,6 +215,7 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -307,6 +226,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1529843615190</updated>
+      <workItem from="1622847719683" duration="2115000" />
     </task>
     <servers />
   </component>
@@ -340,10 +260,21 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

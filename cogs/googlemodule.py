@@ -1,4 +1,5 @@
 from discord.ext import commands
+
 try:
     import googlesearch as gl
 except ImportError:
@@ -7,8 +8,7 @@ except ImportError:
 
 class GoogleModule(object):
 
-    __json_doc__ =\
-        """
+    __json_doc__ = """
          {
             "ignore": false,
             "brief":"This command will return whatever it finds first",
@@ -30,15 +30,15 @@ class GoogleModule(object):
         self.bot = bot
 
     @commands.command()
-    async def google(self, ctx, *, args=''):
+    async def google(self, ctx, *, args=""):
         urls = gl.search(args, stop=1)
         i = 0
         for url in urls:
-                if i == 0:
-                    await ctx.send(url)
-                    i = i + 1
-                else:
-                    break
+            if i == 0:
+                await ctx.send(url)
+                i = i + 1
+            else:
+                break
 
 
 def setup(bot):

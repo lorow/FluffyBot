@@ -5,8 +5,7 @@ from discord.ext import commands
 
 class Wiki(object):
 
-    __json_doc__ =\
-        """
+    __json_doc__ = """
          {
             "ignore": false,
             "brief":"Plugin searching through wikipedia",
@@ -32,21 +31,29 @@ class Wiki(object):
     async def setup_query(self, args):
         query = args.split()
         self.lang = query[0]
-        self.query = '_'.join(query[1:])
+        self.query = "_".join(query[1:])
 
     @commands.command()
-    async def wiki(self, ctx, *, args: str=''):
-        if str == '':
-            await ctx.send("here's how to use this commdand: \n "
-                           "[pefix]wiki lang query - returns one definition at a time")
-        else:  
+    async def wiki(self, ctx, *, args: str = ""):
+        if str == "":
+            await ctx.send(
+                "here's how to use this commdand: \n "
+                "[pefix]wiki lang query - returns one definition at a time"
+            )
+        else:
             await self.setup_query(args)
             try:
                 wikipedia.set_lang(self.lang)
-                await ctx.send(embed=discord.Embed(title=' '.join(args.split()[1:]),
-                                                   description=wikipedia.summary(self.query)))
+                await ctx.send(
+                    embed=discord.Embed(
+                        title=" ".join(args.split()[1:]),
+                        description=wikipedia.summary(self.query),
+                    )
+                )
             except Exception:
-                await ctx.send("It seem that wikipedia does not support this language, try something else")
+                await ctx.send(
+                    "It seem that wikipedia does not support this language, try something else"
+                )
 
 
 def setup(bot):

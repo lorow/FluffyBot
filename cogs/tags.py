@@ -3,8 +3,7 @@ from discord.ext import commands
 
 class TagModule(object):
 
-    __json_doc__ = \
-        """
+    __json_doc__ = """
          {
             "ignore": false,
             "brief":"Simply tags",
@@ -25,7 +24,7 @@ class TagModule(object):
         self.bot = bot
 
     @commands.command()
-    async def tag(self, ctx, *, content=''):
+    async def tag(self, ctx, *, content=""):
         if content.count('"') % 2 == 0 and content.count('"') > 0:
             await ctx.send("yep, seems legit")
         else:

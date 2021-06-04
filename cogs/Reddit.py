@@ -7,9 +7,7 @@ from discord.ext import commands
 
 class Reddit(object):
 
-
-    __json_doc__ =\
-    """
+    __json_doc__ = """
      {
         "ignore": false,
         "brief":"Just some basic Reddit commands. Use them to make your or someones day better",
@@ -31,7 +29,7 @@ class Reddit(object):
         self.configManager = config_manager
         self.imgur_link = "https://api.imgur.com/3/gallery/r/"
         self.entries = defaultdict(list)
-        self.keys = ['link']
+        self.keys = ["link"]
 
     @commands.group()
     async def reddit(self, ctx):
@@ -39,26 +37,32 @@ class Reddit(object):
             await ctx.send(self.__doc__)
 
     @reddit.command()
-    async def image(self, ctx, *, subreddit=''):
-        if subreddit == '':
-            await ctx.send("It seems like you forgot how to use it, so here you go: \n"
-                           " [prefix]reddit image [subreddit name]")
+    async def image(self, ctx, *, subreddit=""):
+        if subreddit == "":
+            await ctx.send(
+                "It seems like you forgot how to use it, so here you go: \n"
+                " [prefix]reddit image [subreddit name]"
+            )
         else:
             await self.make_req(self.imgur_link, subreddit)
-            i = random.randint(0, len(self.entries['link']))
-            await ctx.send(self.entries['link'][i])
+            i = random.randint(0, len(self.entries["link"]))
+            await ctx.send(self.entries["link"][i])
 
     @reddit.command()
-    async def post(self, ctx, *, subreddit=''):
+    async def post(self, ctx, *, subreddit=""):
         await ctx.send("not implemented yet!")
 
     async def make_req(self, link, subreddit):
-        async with aiohttp.ClientSession(headers={'Authorization': 'Client-ID '
-                + self.configManager.get_field('imgur_client_id')}) as cs:
+        async with aiohttp.ClientSession(
+            headers={
+                "Authorization": "Client-ID "
+                + self.configManager.get_field("imgur_client_id")
+            }
+        ) as cs:
 
-            async with cs.get('{l}{s}'.format(l=link, s=subreddit)) as r:
+            async with cs.get("{l}{s}".format(l=link, s=subreddit)) as r:
                 entries = await r.json()
-                for entry, key in zip(entries['data'], self.keys):
+                for entry, key in zip(entries["data"], self.keys):
                     self.entries[key].append(entry[key])
 
 

@@ -3,7 +3,6 @@ from collections import defaultdict
 
 
 class EventHook(object):
-
     def __init__(self):
         self.events = defaultdict(list)
 

@@ -1,4 +1,7 @@
-class GreetingModule(object):
+from discord.ext import commands
+
+
+class GreetingModule(commands.Cog):
 
     __json_doc__ = """
          {

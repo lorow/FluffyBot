@@ -1,11 +1,11 @@
 import ujson
-from cogs.core.utils import ErrorCodes
+from Cogs.core.utils import ErrorCodes
 import discord
 from discord.ext import commands
 import difflib
 
 
-class HelpModule(object):
+class HelpModule(commands.Cog):
 
     __json_doc__ = """
      {

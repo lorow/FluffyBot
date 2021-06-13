@@ -5,7 +5,7 @@ import discord
 from discord.ext import commands
 
 
-class E926(object):
+class E926(commands.Cog):
 
     __json_doc__ = """
          {

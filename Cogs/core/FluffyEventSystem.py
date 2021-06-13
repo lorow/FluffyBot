@@ -25,7 +25,6 @@ class EventHook(object):
             self.events.pop(event)
 
     def remove_listener(self, event: str, listener):
-
         if event in self.events:
             if listener in self.events[event]:
                 self.events[event].remove(listener)

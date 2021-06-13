@@ -1,7 +1,7 @@
 from discord.ext import commands
 
 
-class UsefulCommand(object):
+class UsefulCommand(commands.Cog):
 
     __json_doc__ = """
          {

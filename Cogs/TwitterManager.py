@@ -1,7 +1,8 @@
 import peony
+from discord.ext import commands
 
 
-class FluffyTwitter(object):
+class FluffyTwitter(commands.Cog):
 
     __json_doc__ = """
          {

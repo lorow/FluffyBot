@@ -4,7 +4,7 @@ import aiohttp
 from discord.ext import commands
 
 
-class DerpiBooru(object):
+class DerpiBooru(commands.Cog):
 
     __json_doc__ = """
          {

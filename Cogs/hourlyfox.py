@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class HourlyFox(object):
+class HourlyFox(commands.Cog):
 
     __json_doc__ = """
          {

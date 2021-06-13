@@ -1,7 +1,7 @@
 from discord.ext import commands
 
 
-class TagModule(object):
+class TagModule(commands.Cog):
 
     __json_doc__ = """
          {

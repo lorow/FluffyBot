@@ -6,7 +6,7 @@ except ImportError:
     import google as gl
 
 
-class GoogleModule(object):
+class GoogleModule(commands.Cog):
 
     __json_doc__ = """
          {

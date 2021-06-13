@@ -3,7 +3,7 @@ import wikipedia
 from discord.ext import commands
 
 
-class Wiki(object):
+class Wiki(commands.Cog):
 
     __json_doc__ = """
          {

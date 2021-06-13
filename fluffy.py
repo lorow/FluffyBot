@@ -1,18 +1,20 @@
 import importlib
+import importlib.util
 import inspect
 import logging
 import sys
 
 import discord
 from discord.ext import commands
+from discord.ext.commands import errors
 
-import cogs.core.configJSON as configJson
-import cogs.core.utils.ErrorCodes as errorCodes
+from Cogs.core.utils import ErrorCodes as errorCodes
+from Cogs.core import configJSON
 
 
 class FluffyBot(commands.Bot):
     def __init__(self):
-        self.configManager = configJson.ConfigManager()
+        self.configManager = configJSON.ConfigManager()
 
         self._opts = {
             "command_prefix": self.configManager.get_field("command_prefix"),
@@ -76,22 +78,34 @@ class FluffyBot(commands.Bot):
                 pass
         return deps
 
+    def _load_from_module_spec(self, spec, key):
+        lib = importlib.util.module_from_spec(spec)
+        sys.modules[key] = lib
+        try:
+            spec.loader.exec_module(lib)
+        except Exception as e:
+            del sys.modules[key]
+            raise errors.ExtensionFailed(key, e) from e
+
+        try:
+            setup = getattr(lib, 'setup')
+        except AttributeError:
+            del sys.modules[key]
+            raise errors.NoEntryPointError(key)
+
+        try:
+            setup(**self._prepare_dependencies(lib))
+        except Exception as e:
+            del sys.modules[key]
+            self._remove_module_references(lib.__name__)
+            self._call_module_finalizers(lib, key)
+            raise errors.ExtensionFailed(key, e) from e
+        else:
+            self._BotBase__extensions[key] = lib
+
     def _load_cogs(self):
-        """overrides :discord.commands: load_cogs() function in order to let Fluffybot provide additional dependencies
-        when the bot starts to load plugins
-        """
-
-        for extension in self.configManager.get_field("extensions").items():
-            lib = importlib.import_module(extension[1])
-            if not hasattr(lib, "setup"):
-                del lib
-                del sys.modules[extension[1]]
-                raise discord.ClientException(
-                    "extension does not have a setup function"
-                )
-
-            lib.setup(**self._prepare_dependencies(lib))
-            self.extensions[extension[0]] = lib
+        for extension in self.configManager.get_field("extensions").values():
+            self.load_extension(extension)
 
     def _prepare_logger(self, logger, handler):
         """prepares logger to let others log their info"""

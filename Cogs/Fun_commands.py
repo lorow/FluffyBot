@@ -3,7 +3,7 @@ import random
 from discord.ext import commands
 
 
-class Fun_commands(object):
+class Fun_commands(commands.Cog):
     __json_doc__ = """
          {
      	"ignore": false,

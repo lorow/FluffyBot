@@ -5,7 +5,7 @@ import aiohttp
 from discord.ext import commands
 
 
-class Reddit(object):
+class Reddit(commands.Cog):
 
     __json_doc__ = """
      {

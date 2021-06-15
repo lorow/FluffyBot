@@ -155,6 +155,7 @@ class MusicPlayer:
                     await self._channel.send(
                         f"There was an error processing your song.\n"
                     )
+                    print(e)
                     continue
 
             source.volume = self.volume
@@ -193,9 +194,7 @@ class Music(commands.Cog):
     __json_doc__ = """
         {
            "ignore": false,
-           "brief":"A simple music module that let's you play some good (or not) music from youtube.
-            It supports links as well as searching.",
-
+           "brief":"A simple music module that let's you play some good (or not) music from youtube. It supports links as well as searching.",
            "commands":{
                "join":{
                    "desc": "aliases: [connect], Command for summoning or moving the bot to a specific channel. You need to be connected to one thought",

@@ -160,8 +160,6 @@ class HelpModule(commands.Cog):
                 )
 
     async def prepare_embed_module(self, embed, ctx, _module):
-        mod = None
-
         try:
             mod = self.docs[_module]
         except KeyError:

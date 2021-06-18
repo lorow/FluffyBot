@@ -43,7 +43,7 @@
 
   "dependencies":{
     The dependencies you want to have, I'd advice you not to touch this if you don't know what you're doing
-    "event_manager": "cogs.core.FluffyEventSystem"
+    "event_manager": "Core.FluffyEventSystem"
   },
 
   "birds_to_follow":{

@@ -1,5 +1,5 @@
 import ujson
-from Cogs.core.utils import ErrorCodes
+from Core.utils import ErrorCodes
 import discord
 from discord.ext import commands
 import difflib

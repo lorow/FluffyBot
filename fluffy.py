@@ -8,8 +8,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import errors
 
-from Cogs.core.utils import ErrorCodes as errorCodes
-from Cogs.core import configJSON
+from Core import configJSON
 
 
 class FluffyBot(commands.Bot):
@@ -61,11 +60,11 @@ class FluffyBot(commands.Bot):
                 self.additional_dep[dependency] = dep.setup()
             except AttributeError:
                 print(
-                    errorCodes.bcolors.WARNING
+                    ErrorCodes.bcolors.WARNING
                     + "WARNING: dependency {dep} has no setup function and thus can not be added automatically".format(
                         dep=dependency
                     )
-                    + errorCodes.bcolors.ENDC
+                    + ErrorCodes.bcolors.ENDC
                 )
 
     def _prepare_dependencies(self, cog):

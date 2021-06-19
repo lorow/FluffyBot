@@ -8,12 +8,13 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import errors
 
-from Core import configJSON
+from Core import configLoader
+from Core.utils import ErrorCodes
 
 
 class FluffyBot(commands.Bot):
     def __init__(self):
-        self.configManager = configJSON.ConfigManager()
+        self.configManager = configLoader.ConfigManager()
 
         self._opts = {
             "command_prefix": self.configManager.get_field("command_prefix"),
@@ -122,7 +123,7 @@ class FluffyBot(commands.Bot):
         self._load_cogs()
         # noinspection PyUnresolvedReferences
         self.additional_dep["event_manager"].append_event("on_message")
-        self.run(self.configManager.get_field("testing_bot_token"))
+        self.run(self.configManager.get_field("bot_token"))
         return self
 
 

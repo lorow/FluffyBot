@@ -10,28 +10,20 @@
     <bookmark url="file://$PROJECT_DIR$/cogs/MusicModule.py" description="async def __local_check(self, ctx):" line="249" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9e393c-d95b-4349-a2bc-6dbadc55f9b3" name="Default" comment="Add vagrant, prepare for CI/CD">
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/default/virtualbox/action_provision" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/default/virtualbox/action_set_name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/default/virtualbox/box_meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/default/virtualbox/creator_uid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/default/virtualbox/id" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/default/virtualbox/index_uuid" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/default/virtualbox/private_key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/default/virtualbox/synced_folders" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/machines/default/virtualbox/vagrant_cwd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vagrant/rgloader/loader.rb" afterDir="false" />
+    <list default="true" id="5b9e393c-d95b-4349-a2bc-6dbadc55f9b3" name="Default" comment="Refactor configuration">
+      <change afterPath="$PROJECT_DIR$/Cogs/Twitter/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cogs/Twitter/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/repository/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/repository/connector.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/repository/connectors/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/repository/connectors/redis_connector.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/repository/model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/repository/repositories/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/repository/repositories/twitter_repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/repository/repository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cogs/HelpModule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cogs/HelpModule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cogs/core/FluffyEventSystem.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/FluffyEventSystem.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cogs/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cogs/core/configJSON.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/configJSON.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cogs/core/utils/ErrorCodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/utils/ErrorCodes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cogs/core/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/misc/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cogs/misc/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cogs/TwitterManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cogs/Twitter/TwitterManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vagrantfile" beforeDir="false" afterPath="$PROJECT_DIR$/Vagrantfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.json.example" beforeDir="false" afterPath="$PROJECT_DIR$/config.json.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluffy.py" beforeDir="false" afterPath="$PROJECT_DIR$/fluffy.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +84,16 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="Refactor configuration" />
+        <option name="rewordedMessage" value="Refactor configuration" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="bfd332e84b151d1e9b858a20c9e15946fc6baf21" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -188,18 +190,46 @@
       <recent name="D:\Projects\FluffyBot" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\FluffyBot\Cogs\Twitter" />
+      <recent name="D:\Projects\FluffyBot\Core\repository\repositories" />
+      <recent name="D:\Projects\FluffyBot\Core\repository" />
       <recent name="D:\Projects\FluffyBot\core" />
       <recent name="D:\Projects\FluffyBot" />
-      <recent name="H:\FluffyBot\cogs" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Fluffy" type="PythonConfigurationType" factoryName="Python">
+  <component name="RunManager" selected="Python.Fluffy - testing">
+    <configuration name="Fluffy - prod" type="PythonConfigurationType" factoryName="Python">
       <module name="FluffyBot" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="owner_id" value="384777898470670348" />
+        <env name="bot_token" value="Mzg0Nzc3ODk4NDcwNjcwMzQ4.WhxeVw.PfIY1qDXeZKiRFBYR8nfeXKjMug" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\lorow\AppData\Local\pypoetry\Cache\virtualenvs\fluffybot-ixilkcNj-py3.9\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fluffy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Fluffy - testing" type="PythonConfigurationType" factoryName="Python">
+      <module name="FluffyBot" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="owner_id" value="427521931168841749" />
+        <env name="bot_token" value="NDI3NTIxOTMxMTY4ODQxNzQ5.Wrfe0w.nxynP_Q6wqeoNA2xcRCIdNA6aUY" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\lorow\AppData\Local\pypoetry\Cache\virtualenvs\fluffybot-ixilkcNj-py3.9\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -240,6 +270,10 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.Fluffy - prod" />
+      <item itemvalue="Python.Fluffy - testing" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -262,7 +296,9 @@
       <workItem from="1623701537064" duration="35000" />
       <workItem from="1623781079428" duration="1991000" />
       <workItem from="1623794936784" duration="718000" />
-      <workItem from="1624037314667" duration="1492000" />
+      <workItem from="1624037314667" duration="3025000" />
+      <workItem from="1624058231356" duration="848000" />
+      <workItem from="1624102590799" duration="14478000" />
     </task>
     <task id="LOCAL-00001" summary="Fix loading cogs">
       <created>1623610899604</created>
@@ -285,7 +321,28 @@
       <option name="project" value="LOCAL" />
       <updated>1623797385899</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Refactor structure">
+      <created>1624040603098</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1624040603098</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Refactor configuration">
+      <created>1624133651878</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1624133651878</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Refactor configuration">
+      <created>1624133663296</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1624133663296</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -337,7 +394,9 @@
     <MESSAGE value="Fix loading cogs" />
     <MESSAGE value="update gitignore" />
     <MESSAGE value="Add vagrant, prepare for CI/CD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add vagrant, prepare for CI/CD" />
+    <MESSAGE value="Refactor structure" />
+    <MESSAGE value="Refactor configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor configuration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -357,7 +416,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/FluffyBot$Fluffy.coverage" NAME="Fluffy Coverage Results" MODIFIED="1624040586298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FluffyBot$Fluffy.coverage" NAME="Fluffy Coverage Results" MODIFIED="1624133040244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">

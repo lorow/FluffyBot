@@ -1,6 +1,10 @@
 import peony
 from discord.ext import commands
 
+from Core import FluffyEventSystem
+from Core.configLoader import ConfigManager
+from Core.repository.repositories.twitter_repository import TwitterRepository
+
 
 class FluffyTwitter(commands.Cog):
 
@@ -10,10 +14,12 @@ class FluffyTwitter(commands.Cog):
          } 
         """
 
-    def __init__(self, bot, event_manager, config_manager):
+    def __init__(self, bot, event_manager, config_manager, twitter_repository):
         self.configManager = config_manager
         self.eventManager = event_manager
         self.bot = bot
+        self.twitterRepository = twitter_repository
+
         self.client = peony.PeonyClient(
             **{
                 "consumer_key": config_manager.get_field("consumer_key"),
@@ -41,5 +47,5 @@ class FluffyTwitter(commands.Cog):
                     await self.eventManager.notify(tweet["user"]["screen_name"], tweet)
 
 
-def setup(bot, event_manager, config_manager):
-    bot.add_cog(FluffyTwitter(bot, event_manager, config_manager))
+def setup(bot, event_manager: FluffyEventSystem, config_manager: ConfigManager, twitter_repository: TwitterRepository):
+    bot.add_cog(FluffyTwitter(bot, event_manager, config_manager, twitter_repository))

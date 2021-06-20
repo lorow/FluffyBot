@@ -14,5 +14,5 @@ class RedisConnector(AbstractConnector):
         self.redis = redis
         return redis
 
-    def disconnect(self):
-        self.redis.close()
+    async def disconnect(self):
+        await self.redis.close()

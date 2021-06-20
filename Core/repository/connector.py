@@ -8,5 +8,5 @@ class AbstractConnector(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def disconnect(self):
+    async def disconnect(self):
         raise NotImplementedError

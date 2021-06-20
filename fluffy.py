@@ -6,9 +6,10 @@ import sys
 
 import discord
 from discord.ext import commands
-from discord.ext.commands import errors
+from discord.ext.commands import errors, ExtensionFailed
 
 from Core import configLoader
+from Core.repository.repository import AbstractRepository
 from Core.utils import ErrorCodes
 
 
@@ -24,6 +25,7 @@ class FluffyBot(commands.Bot):
 
         # some starting deps are added at the very beginning, the rest will be loaded at runtime
         self.additional_dep = {"bot": self, "config_manager": self.configManager}
+        self.storages = {}
 
         self.logger = logging.getLogger("discord")
         self.handler = logging.FileHandler(
@@ -47,16 +49,42 @@ class FluffyBot(commands.Bot):
         await self.additional_dep["event_manager"].notify("on_message", message)
         await self.process_commands(message)
 
+    def _get_storage_connector(self, storage_config: dict):
+        path_split = storage_config.get("connector").split(".")
+        path = ".".join(path_split[:-1])
+        module = importlib.import_module(path)
+        return getattr(module, path_split[-1])
+
+    def _get_repository(self, repository_item):
+        repository_name, repository_path = repository_item
+        path_split = repository_path.split(".")
+        path = ".".join(path_split[:-1])
+        module = importlib.import_module(path)
+        return repository_name, getattr(module, path_split[-1])
+
+    def _prepare_storages(self):
+        """ Prepares the repositories and connects them to the database by using Connector classes """
+        declared_storages = self.configManager.get_field("storage")
+
+        for storage_name, storage_config in declared_storages.items():
+            connector = self._get_storage_connector(storage_config)
+            connection = connector(connection_details=storage_config.get("connection_details")).connect()
+
+            for repository_item in storage_config.get("repositories").items():
+                repository_name, repository_class = self._get_repository(repository_item)
+                repository_class = repository_class(session=connection)
+                self.storages[repository_name] = {
+                    "class": repository_class
+                }
+
     def _collect_dependencies(self):
         """loads the dependencies listed in configuration file"""
         deps = self.configManager.get_field("dependencies")
 
         for dependency in deps:
             dep = importlib.import_module(deps[dependency])
-
             # the thing that importlib imports is a module, so we have to somehow initialize it, the best way is by a
             # global setup function. If the module has no such function, then it's not supposed to be auto-imported
-
             try:
                 self.additional_dep[dependency] = dep.setup()
             except AttributeError:
@@ -69,13 +97,16 @@ class FluffyBot(commands.Bot):
                 )
 
     def _prepare_dependencies(self, cog):
-        """populates 'dict' containing all of the needed dependencies by cog"""
+        """populates deps dict containing all of the needed dependencies by cog"""
         deps = {}
-        for key in inspect.getfullargspec(cog.setup)[0]:
-            try:
+        argspec = inspect.getfullargspec(cog.setup)
+        for key in argspec[0]:
+            if key in self.storages.keys():
+                deps[key] = self.storages[key]["class"]
+            elif key in self.additional_dep.keys():
                 deps[key] = self.additional_dep[key]
-            except KeyError:
-                pass
+            else:
+                print(f"Could not find anything for {key}")
         return deps
 
     def _load_from_module_spec(self, spec, key):
@@ -105,7 +136,10 @@ class FluffyBot(commands.Bot):
 
     def _load_cogs(self):
         for extension in self.configManager.get_field("extensions").values():
-            self.load_extension(extension)
+            try:
+                self.load_extension(extension)
+            except ExtensionFailed:
+                print(f"{extension} - failed")
 
     def _prepare_logger(self, logger, handler):
         """prepares logger to let others log their info"""
@@ -120,6 +154,7 @@ class FluffyBot(commands.Bot):
 
         self._prepare_logger(self.logger, self.handler)
         self._collect_dependencies()
+        self._prepare_storages()
         self._load_cogs()
         # noinspection PyUnresolvedReferences
         self.additional_dep["event_manager"].append_event("on_message")

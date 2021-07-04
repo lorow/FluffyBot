@@ -2,7 +2,7 @@ import peony
 from discord.ext import commands
 
 from Core import FluffyEventSystem
-from Core.configLoader import ConfigManager
+from Core.Config.ConfigManager import ConfigManager
 from Core.repository.repositories.twitter_repository import TwitterRepository
 
 

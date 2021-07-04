@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 environment = os.environ.get("environment")
 owner_id = os.environ.get("owner_id")

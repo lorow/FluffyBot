@@ -3,8 +3,8 @@ import settings
 
 class ConfigManager(object):
 
-    def get_field(self, field):
-
+    @staticmethod
+    def get_field(field):
         try:
             return getattr(settings, field)
         except KeyError as error:

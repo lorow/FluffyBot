@@ -8,14 +8,13 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import errors, ExtensionFailed
 
-from Core import configLoader
-from Core.repository.repository import AbstractRepository
+from Core.Config import ConfigManager
 from Core.utils import ErrorCodes
 
 
 class FluffyBot(commands.Bot):
     def __init__(self):
-        self.configManager = configLoader.ConfigManager()
+        self.configManager = ConfigManager.ConfigManager()
 
         self._opts = {
             "command_prefix": self.configManager.get_field("command_prefix"),
@@ -45,8 +44,11 @@ class FluffyBot(commands.Bot):
         print(event_method)
 
     async def on_message(self, message):
-        # noinspection PyUnresolvedReferences
-        await self.additional_dep["event_manager"].notify("on_message", message)
+        event_manager = self.additional_dep.get("event_manager", None)
+        if event_manager:
+            # noinspection PyUnresolvedReferences
+            await event_manager.notify("on_message", message)
+
         await self.process_commands(message)
 
     def _get_storage_connector(self, storage_config: dict):

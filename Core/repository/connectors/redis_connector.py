@@ -10,6 +10,7 @@ class RedisConnector(AbstractConnector):
         self.redis = None
 
     def connect(self):
+        # noinspection PyUnresolvedReferences
         redis = aioredis.from_url(url=self.connection_details.get("url"))
         self.redis = redis
         return redis

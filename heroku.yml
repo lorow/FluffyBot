@@ -1,0 +1,5 @@
+setup:
+  -plan: heroku-redis
+build:
+  docker:
+    web: docker/Dockerfile

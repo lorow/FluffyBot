@@ -4,3 +4,8 @@ setup:
 build:
   docker:
     web: Dockerfile
+run:
+  worker:
+    command:
+      - poetry run python fluffy.py
+    image: web

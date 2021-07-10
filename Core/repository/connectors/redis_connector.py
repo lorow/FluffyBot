@@ -6,7 +6,7 @@ from Core.repository.connector import AbstractConnector
 class RedisConnector(AbstractConnector):
     """ Manages the connection to redis instance"""
     def __init__(self, connection_details: dict):
-        self.connection_details = connection_details
+        super().__init__(connection_details)
         self.redis = None
 
     def connect(self):

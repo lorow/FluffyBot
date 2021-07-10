@@ -1,11 +1,12 @@
 setup:
   addons:
     - plan: heroku-redis
+    - plan: heroku-postgresql
 build:
   docker:
-    web: Dockerfile
+    worker: Dockerfile
 run:
   worker:
     command:
       - poetry run python fluffy.py
-    image: web
+    image: worker

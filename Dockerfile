@@ -14,4 +14,5 @@ RUN apt install git && \
     python3 -m pip install poetry && \
     poetry install && \
     poetry run python -m pip install git+git://github.com/aio-libs/aioredis-py.git@master
+
 CMD ["poetry", "run", "python", "fluffy.py"]

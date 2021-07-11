@@ -19,7 +19,8 @@ storage = {
         "connection_details": {"url": database_url},
         "connector": "Core.repository.connectors.postgresql_connector.PostgresqlConnector",
         "repositories": {
-            "postgresql_repository": "Core.repository.repositories.postgresql_repository.PostresqlRepository"
+            "user_repository": "Core.repository.repositories.user_repository.UserRepository",
+            "word_counter_repository": "Core.repository.repositories.word_counter_repository.WordCounterRepository",
         }
     }
 }

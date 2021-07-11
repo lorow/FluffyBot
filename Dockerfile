@@ -16,4 +16,4 @@ RUN apt install git && \
     python -m pip install -r requirements.txt && \
     python -m pip install git+git://github.com/aio-libs/aioredis-py.git@master
 
-CMD ["python", "fluffy.py"]
+ENTRYPOINT ["python", "fluffy.py"]

@@ -9,7 +9,7 @@ storage = {
         },
     },
     "base_postgresql": {
-        "connection_details": {"url": "sqlite+aiomysql://lorow:password@localhost/fluffydev"},
+        "connection_details": {"url": "mysql+aiomysql://lorow:password@localhost/fluffydev"},
         "connector": "Core.repository.connectors.postgresql_connector.PostgresqlConnector",
         "repositories": {
             "user_repository": "Core.repository.repositories.user_repository.UserRepository",

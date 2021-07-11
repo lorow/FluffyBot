@@ -8,5 +8,5 @@ build:
 run:
   worker:
     command:
-      - poetry run python fluffy.py
+      - python fluffy.py
     image: worker

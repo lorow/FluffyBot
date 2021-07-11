@@ -12,7 +12,8 @@ RUN apt-get update \
 
 RUN apt install git && \
     python3 -m pip install poetry && \
-    poetry install && \
-    poetry run python -m pip install git+git://github.com/aio-libs/aioredis-py.git@master
+    poetry export -f requirements.txt --output requirements.txt && \
+    python -m pip install -r requirements.txt && \
+    python -m pip install git+git://github.com/aio-libs/aioredis-py.git@master
 
-CMD ["poetry", "run", "python", "fluffy.py"]
+CMD ["python", "fluffy.py"]

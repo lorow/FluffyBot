@@ -44,7 +44,6 @@ class HourlyFox(commands.Cog):
 
         self.eventManager.append_listener("on_message", self.change_last_id)
         self.eventManager.append_listener("hourlyFox", self.send_link)
-        self.eventManager.append_listener("lorow23", self.send_link)
 
     async def change_last_id(self, message):
 

@@ -13,6 +13,8 @@ from Core.Bot.utils import (
     _prepare_storages,
 )
 from Core.Config.ConfigManager import ConfigManager
+from Core.Events import FluffyEventSystem
+from Core.Events.events.onMessage import OnMessageEvent
 
 
 class FluffyBot(commands.Bot):
@@ -46,10 +48,9 @@ class FluffyBot(commands.Bot):
         print(event_method)
 
     async def on_message(self, message):
-        event_manager = self.additional_dep.get("event_manager", None)
+        event_manager: FluffyEventSystem = self.additional_dep.get("event_manager", None)
         if event_manager:
-            # noinspection PyUnresolvedReferences
-            await event_manager.notify("on_message", message)
+            await event_manager.notify(OnMessageEvent, message)
 
         await self.process_commands(message)
 

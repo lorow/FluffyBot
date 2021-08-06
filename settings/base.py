@@ -31,11 +31,16 @@ extensions = {
     "greetingModule": "Cogs.GreetingModule",
     "twitter": "Cogs.Twitter.TwitterManager",
     "music": "Cogs.MusicModule",
-    "help": "Cogs.HelpModule",
+    "hourly_fox": "Cogs.HourlyFox",
 }
 
+# that's a must be last extension therefore it's added separately
+extensions.update({
+    "help": "Cogs.HelpModule",
+})
+
 dependencies = {
-    "event_manager": "Core.FluffyEventSystem",
+    "event_manager": "Core.Events.FluffyEventSystem",
 }
 
 storage = {}

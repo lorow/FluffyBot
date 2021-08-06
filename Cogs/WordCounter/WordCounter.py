@@ -1,6 +1,6 @@
 from discord.ext import commands
 
-from Core import FluffyEventSystem
+from Core.Events import FluffyEventSystem
 from Core.Config.ConfigManager import ConfigManager
 from Core.storage.repository.repositories.word_counter_repository import (
     WordCounterRepository,

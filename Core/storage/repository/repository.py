@@ -1,6 +1,6 @@
 import abc
 
-from Core.repository import model
+from Core.storage.repository import model
 
 
 class AbstractRepository(abc.ABC):

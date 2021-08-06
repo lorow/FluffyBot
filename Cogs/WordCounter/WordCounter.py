@@ -2,7 +2,9 @@ from discord.ext import commands
 
 from Core import FluffyEventSystem
 from Core.Config.ConfigManager import ConfigManager
-from Core.repository.repositories.word_counter_repository import WordCounterRepository
+from Core.storage.repository.repositories.word_counter_repository import (
+    WordCounterRepository,
+)
 
 
 class WordCounter(commands.Cog):

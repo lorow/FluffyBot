@@ -3,7 +3,7 @@ from discord.ext import commands
 
 from Core import FluffyEventSystem
 from Core.Config.ConfigManager import ConfigManager
-from Core.repository.repositories.twitter_repository import TwitterRepository
+from Core.storage.repository.repositories.twitter_repository import TwitterRepository
 
 
 class FluffyTwitter(commands.Cog):

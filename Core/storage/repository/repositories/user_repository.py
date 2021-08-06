@@ -1,5 +1,5 @@
-from Core.User.models import UserModel
-from Core.repository.repository import AbstractRepository
+from Core.storage.modules.User.models import UserModel
+from Core.storage.repository.repository import AbstractRepository
 
 
 class UserRepository(AbstractRepository):

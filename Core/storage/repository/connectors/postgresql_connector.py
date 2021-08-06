@@ -1,6 +1,6 @@
 from sqlalchemy.orm import sessionmaker
 
-from Core.repository.connector import AbstractConnector
+from Core.storage.repository.connector import AbstractConnector
 
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 

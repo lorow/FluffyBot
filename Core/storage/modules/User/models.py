@@ -1,6 +1,6 @@
 import sqlalchemy
 
-from Core.repository.model import SQLAlchemyModel
+from Core.storage.repository.model import SQLAlchemyModel
 
 
 class UserModel(SQLAlchemyModel):

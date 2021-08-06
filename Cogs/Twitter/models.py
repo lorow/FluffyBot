@@ -1,7 +1,7 @@
 import uuid
 from dataclasses import dataclass
 
-from Core.repository.model import AbstractModel
+from Core.storage.repository.model import AbstractModel
 
 
 @dataclass

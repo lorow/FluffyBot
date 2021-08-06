@@ -1,6 +1,6 @@
 import aioredis
 
-from Core.repository.connector import AbstractConnector
+from Core.storage.repository.connector import AbstractConnector
 
 
 class RedisConnector(AbstractConnector):

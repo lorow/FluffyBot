@@ -1,8 +1,8 @@
-from Core.repository import model
-from Core.repository.repository import AbstractRepository
+from Core.storage.repository import model
+from Core.storage.repository.repository import AbstractRepository
 
 
-class WordCounterRepository(AbstractRepository):
+class TwitterRepository(AbstractRepository):
     def add(self, instance: model.AbstractModel):
         pass
 

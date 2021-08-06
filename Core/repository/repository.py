@@ -4,7 +4,6 @@ from Core.repository import model
 
 
 class AbstractRepository(abc.ABC):
-
     def __init__(self, session):
         self.session = session
 
@@ -21,6 +20,7 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def update(self, reference, instance: model.AbstractModel) -> (bool, model.AbstractModel):
+    def update(
+        self, reference, instance: model.AbstractModel
+    ) -> (bool, model.AbstractModel):
         raise NotImplementedError
-

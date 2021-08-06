@@ -21,7 +21,6 @@ storage = {
         "repositories": {
             "user_repository": "Core.repository.repositories.user_repository.UserRepository",
             "word_counter_repository": "Core.repository.repositories.word_counter_repository.WordCounterRepository",
-        }
-    }
+        },
+    },
 }
-

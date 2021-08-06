@@ -16,6 +16,13 @@ class WordCounter(commands.Cog):
         self.word_counter_repository = word_counter_repository
 
 
-def setup(bot, event_manager: FluffyEventSystem, config_manager: ConfigManager, word_counter_repository: WordCounterRepository):
+def setup(
+    bot,
+    event_manager: FluffyEventSystem,
+    config_manager: ConfigManager,
+    word_counter_repository: WordCounterRepository,
+):
     print("Added word counter cog")
-    bot.add_cog(WordCounter(bot, event_manager, config_manager, word_counter_repository))
+    bot.add_cog(
+        WordCounter(bot, event_manager, config_manager, word_counter_repository)
+    )

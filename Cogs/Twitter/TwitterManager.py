@@ -47,5 +47,10 @@ class FluffyTwitter(commands.Cog):
                     await self.eventManager.notify(tweet["user"]["screen_name"], tweet)
 
 
-def setup(bot, event_manager: FluffyEventSystem, config_manager: ConfigManager, twitter_repository: TwitterRepository):
+def setup(
+    bot,
+    event_manager: FluffyEventSystem,
+    config_manager: ConfigManager,
+    twitter_repository: TwitterRepository,
+):
     bot.add_cog(FluffyTwitter(bot, event_manager, config_manager, twitter_repository))

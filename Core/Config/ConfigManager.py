@@ -2,7 +2,6 @@ import settings
 
 
 class ConfigManager(object):
-
     @staticmethod
     def get_field(field):
         try:

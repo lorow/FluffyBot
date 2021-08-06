@@ -67,9 +67,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get upgrade
-    apt-get install python3.9 pip3 docker
+    apt-get install python3.9 pip3 docker -y
 
-    sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
+    sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release -y
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null

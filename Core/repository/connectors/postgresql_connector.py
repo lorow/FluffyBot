@@ -7,6 +7,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 
 class PostgresqlConnector(AbstractConnector):
     """Manages the connection to async postgresql database"""
+
     def __init__(self, connection_details):
         super().__init__(connection_details)
         self.session = None

@@ -12,5 +12,7 @@ class WordCounterRepository(AbstractRepository):
     def remove(self, reference):
         pass
 
-    def update(self, reference, instance: model.AbstractModel) -> (bool, model.AbstractModel):
+    def update(
+        self, reference, instance: model.AbstractModel
+    ) -> (bool, model.AbstractModel):
         pass

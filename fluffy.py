@@ -70,14 +70,16 @@ class FluffyBot(commands.Bot):
 
         for storage_name, storage_config in declared_storages.items():
             connector = self._get_storage_connector(storage_config)
-            connection = connector(connection_details=storage_config.get("connection_details")).connect()
+            connection = connector(
+                connection_details=storage_config.get("connection_details")
+            ).connect()
 
             for repository_item in storage_config.get("repositories").items():
-                repository_name, repository_class = self._get_repository(repository_item)
+                repository_name, repository_class = self._get_repository(
+                    repository_item
+                )
                 repository_class = repository_class(session=connection)
-                self.storages[repository_name] = {
-                    "class": repository_class
-                }
+                self.storages[repository_name] = {"class": repository_class}
 
     def _collect_dependencies(self):
         """loads the dependencies listed in configuration file"""
@@ -121,7 +123,7 @@ class FluffyBot(commands.Bot):
             raise errors.ExtensionFailed(key, e) from e
 
         try:
-            setup = getattr(lib, 'setup')
+            setup = getattr(lib, "setup")
         except AttributeError:
             del sys.modules[key]
             raise errors.NoEntryPointError(key)

@@ -6,7 +6,7 @@ class WordCounterRepository(AbstractRepository):
     def add(self, instance: model.AbstractModel):
         pass
 
-    def get(self, reference) -> model.AbstractModel:
+    def get(self, word: str, for_user: str = None) -> model.AbstractModel:
         pass
 
     def remove(self, reference):

@@ -11,19 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b9e393c-d95b-4349-a2bc-6dbadc55f9b3" name="Default" comment="Refactor configuration">
-      <change afterPath="$PROJECT_DIR$/Cogs/Twitter/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cogs/Twitter/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/repository/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/repository/connector.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/repository/connectors/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/repository/connectors/redis_connector.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/repository/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/repository/repositories/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/repository/repositories/twitter_repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/repository/repository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cogs/TwitterManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cogs/Twitter/TwitterManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vagrantfile" beforeDir="false" afterPath="$PROJECT_DIR$/Vagrantfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

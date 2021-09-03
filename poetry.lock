@@ -132,6 +132,21 @@ python2 = ["typed-ast (>=1.4.2)"]
 uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
+name = "bumpver"
+version = "2021.1113"
+description = "Bump version numbers in project files."
+category = "main"
+optional = false
+python-versions = ">=2.7"
+
+[package.dependencies]
+click = {version = "*", markers = "python_version >= \"3.6\""}
+colorama = ">=0.4"
+lexid = "*"
+pathlib2 = "*"
+toml = "*"
+
+[[package]]
 name = "cffi"
 version = "1.14.5"
 description = "Foreign Function Interface for Python calling C code."
@@ -237,6 +252,14 @@ optional = false
 python-versions = ">=3.5"
 
 [[package]]
+name = "lexid"
+version = "2021.1006"
+description = "Variable width build numbers with lexical ordering."
+category = "main"
+optional = false
+python-versions = ">=2.7"
+
+[[package]]
 name = "lxml"
 version = "4.6.3"
 description = "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API."
@@ -265,6 +288,17 @@ description = "Experimental type system extensions for programs checked with the
 category = "main"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "pathlib2"
+version = "2.3.6"
+description = "Object-oriented filesystem paths"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+six = "*"
 
 [[package]]
 name = "pathspec"
@@ -477,7 +511,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "87ef850ac7654ccbb5996bb058b924c0b8b8cb1b774f6d243c0124a1580b9bc3"
+content-hash = "605fb79e1673f73890080e029e1d219f1ec7609199ea66f5198aa91587654144"
 
 [metadata.files]
 aiohttp = [
@@ -570,6 +604,10 @@ beautifulsoup4 = [
 black = [
     {file = "black-21.5b2-py3-none-any.whl", hash = "sha256:e5cf21ebdffc7a9b29d73912b6a6a9a4df4ce70220d523c21647da2eae0751ef"},
     {file = "black-21.5b2.tar.gz", hash = "sha256:1fc0e0a2c8ae7d269dfcf0c60a89afa299664f3e811395d40b1922dff8f854b5"},
+]
+bumpver = [
+    {file = "bumpver-2021.1113-py2.py3-none-any.whl", hash = "sha256:a2fcefba10c9ad18644f0ba773a779fc1a904d94ac51f4a07025c0a7b107f70b"},
+    {file = "bumpver-2021.1113.tar.gz", hash = "sha256:86232c6b9f137a2fddfcc811a4f6c23aedc952a8f4e4b0bd700469da156de883"},
 ]
 cffi = [
     {file = "cffi-1.14.5-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:bb89f306e5da99f4d922728ddcd6f7fcebb3241fc40edebcb7284d7514741991"},
@@ -744,6 +782,10 @@ idna = [
     {file = "idna-3.2-py3-none-any.whl", hash = "sha256:14475042e284991034cb48e06f6851428fb14c4dc953acd9be9a5e95c7b6dd7a"},
     {file = "idna-3.2.tar.gz", hash = "sha256:467fbad99067910785144ce333826c71fb0e63a425657295239737f7ecd125f3"},
 ]
+lexid = [
+    {file = "lexid-2021.1006-py2.py3-none-any.whl", hash = "sha256:5526bb5606fd74c7add23320da5f02805bddd7c77916f2dc1943e6bada8605ed"},
+    {file = "lexid-2021.1006.tar.gz", hash = "sha256:509a3a4cc926d3dbf22b203b18a4c66c25e6473fb7c0e0d30374533ac28bafe5"},
+]
 lxml = [
     {file = "lxml-4.6.3-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:df7c53783a46febb0e70f6b05df2ba104610f2fb0d27023409734a3ecbb78fb2"},
     {file = "lxml-4.6.3-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:1b7584d421d254ab86d4f0b13ec662a9014397678a7c4265a02a6d7c2b18a75f"},
@@ -834,6 +876,10 @@ multidict = [
 mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
+]
+pathlib2 = [
+    {file = "pathlib2-2.3.6-py2.py3-none-any.whl", hash = "sha256:3a130b266b3a36134dcc79c17b3c7ac9634f083825ca6ea9d8f557ee6195c9c8"},
+    {file = "pathlib2-2.3.6.tar.gz", hash = "sha256:7d8bcb5555003cdf4a8d2872c538faa3a0f5d20630cb360e518ca3b981795e5f"},
 ]
 pathspec = [
     {file = "pathspec-0.8.1-py2.py3-none-any.whl", hash = "sha256:aa0cb481c4041bf52ffa7b0d8fa6cd3e88a2ca4879c533c9153882ee2556790d"},

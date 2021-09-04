@@ -19,3 +19,5 @@ storage = {
         },
     },
 }
+
+guild = os.environ.get("guild")

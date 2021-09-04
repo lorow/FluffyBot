@@ -10,10 +10,11 @@
     <bookmark url="file://$PROJECT_DIR$/cogs/MusicModule.py" description="async def __local_check(self, ctx):" line="249" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9e393c-d95b-4349-a2bc-6dbadc55f9b3" name="Default" comment="Add versioning">
+    <list default="true" id="5b9e393c-d95b-4349-a2bc-6dbadc55f9b3" name="Default" comment="Add hikari with hikari-tanjun">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Bot/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Bot/core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Config/ConfigManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Config/ConfigManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/development.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings/development.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +225,8 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="owner_id" value="427521931168841749" />
-        <env name="bot_token" value="NDI3NTIxOTMxMTY4ODQxNzQ5.Wrfe0w.nxynP_Q6wqeoNA2xcRCIdNA6aUY" />
+        <env name="bot_token" value="NDI3NTIxOTMxMTY4ODQxNzQ5.Wrfe0w.zCdKuuVnInRP17K6lCATpJkytok" />
+        <env name="guild" value="328175388331081739" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\lorow\AppData\Local\pypoetry\Cache\virtualenvs\fluffybot-ixilkcNj-py3.9\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -296,7 +298,7 @@
       <workItem from="1624102590799" duration="14478000" />
       <workItem from="1630709891477" duration="1075000" />
       <workItem from="1630711252392" duration="1656000" />
-      <workItem from="1630759987860" duration="594000" />
+      <workItem from="1630759987860" duration="10872000" />
     </task>
     <task id="LOCAL-00001" summary="Fix loading cogs">
       <created>1623610899604</created>
@@ -347,7 +349,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630694456855</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add hikari with hikari-tanjun">
+      <created>1630762597935</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1630762597935</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -402,7 +411,8 @@
     <MESSAGE value="Refactor structure" />
     <MESSAGE value="Refactor configuration" />
     <MESSAGE value="Add versioning" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add versioning" />
+    <MESSAGE value="Add hikari with hikari-tanjun" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add hikari with hikari-tanjun" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -423,6 +433,8 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/FluffyBot$Fluffy.coverage" NAME="Fluffy Coverage Results" MODIFIED="1624133040244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FluffyBot$Fluffy___testing.coverage" NAME="Fluffy - testing Coverage Results" MODIFIED="1630777238448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FluffyBot$Fluffy___prod.coverage" NAME="Fluffy - prod Coverage Results" MODIFIED="1630770449464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">

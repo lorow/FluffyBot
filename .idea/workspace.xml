@@ -10,10 +10,8 @@
     <bookmark url="file://$PROJECT_DIR$/cogs/MusicModule.py" description="async def __local_check(self, ctx):" line="249" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9e393c-d95b-4349-a2bc-6dbadc55f9b3" name="Default" comment="Refactor configuration">
-      <change afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
+    <list default="true" id="5b9e393c-d95b-4349-a2bc-6dbadc55f9b3" name="Default" comment="Add versioning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
@@ -75,6 +73,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitRewordedCommitMessages">
@@ -291,6 +294,9 @@
       <workItem from="1624037314667" duration="3025000" />
       <workItem from="1624058231356" duration="848000" />
       <workItem from="1624102590799" duration="14478000" />
+      <workItem from="1630709891477" duration="1075000" />
+      <workItem from="1630711252392" duration="1656000" />
+      <workItem from="1630759987860" duration="594000" />
     </task>
     <task id="LOCAL-00001" summary="Fix loading cogs">
       <created>1623610899604</created>
@@ -334,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624133663296</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add versioning">
+      <created>1630694456855</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1630694456855</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -388,7 +401,8 @@
     <MESSAGE value="Add vagrant, prepare for CI/CD" />
     <MESSAGE value="Refactor structure" />
     <MESSAGE value="Refactor configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor configuration" />
+    <MESSAGE value="Add versioning" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add versioning" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

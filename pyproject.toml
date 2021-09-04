@@ -5,7 +5,7 @@ description = ""
 authors = ["lorow"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.11"
 "discord.py" = {extras = ["voice"], version = "^1.7.2"}
 black = "^21.5b2"
 asyncio = "^3.4.3"
@@ -23,6 +23,8 @@ SQLAlchemy = "^1.4.20"
 asyncpg = "^0.23.0"
 aiomysql = "^0.0.21"
 bumpver = "^2021.1113"
+hikari = "^2.0.0-alpha.101"
+hikari-tanjun = "^2.0.0-alpha.1"
 
 [tool.poetry.dev-dependencies]
 
